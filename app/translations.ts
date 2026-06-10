@@ -78,7 +78,7 @@ export const T: Record<Lang, Content> = {
         { code: "13282", label: "UniqueKey", hint: "5 Zeichen · permanent, nie wiederverwendet" },
         { code: "90", label: "StatusCode", hint: "2 Ziffern · Reifegrad im Lifecycle" },
       ],
-      example: "H-7206-13282-90 = Hungema · Blechteil · Key 13282 · Prototyp",
+      example: "H-7206-13282-90 = Helios Werk · Blechteil · Key 13282 · Prototyp",
       familiesTitle: "Klassen-Familien (125 Klassen in 15 Familien)",
       families: [
         { range: "1001–1104", name: "Dokumente (Konstruktion & Fertigung)" },
@@ -205,7 +205,7 @@ export const T: Record<Lang, Content> = {
         { code: "13282", label: "UniqueKey", hint: "5 chars · permanent, never reused" },
         { code: "90", label: "StatusCode", hint: "2 digits · maturity in the lifecycle" },
       ],
-      example: "H-7206-13282-90 = Hungema · Sheet metal part · Key 13282 · Prototype",
+      example: "H-7206-13282-90 = Helios Werk · Sheet metal part · Key 13282 · Prototype",
       familiesTitle: "Class families (125 classes across 15 families)",
       families: [
         { range: "1001–1104", name: "Documents (engineering & manufacturing)" },
@@ -332,7 +332,7 @@ export const T: Record<Lang, Content> = {
         { code: "13282", label: "UniqueKey", hint: "5 karakter · állandó, soha nem újrahasznosított" },
         { code: "90", label: "StatusCode", hint: "2 számjegy · érettség az életciklusban" },
       ],
-      example: "H-7206-13282-90 = Hungema · Lemezalkatrész · Key 13282 · Prototípus",
+      example: "H-7206-13282-90 = Helios Werk · Lemezalkatrész · Key 13282 · Prototípus",
       familiesTitle: "Osztálycsaládok (125 osztály 15 családban)",
       families: [
         { range: "1001–1104", name: "Dokumentumok (tervezés és gyártás)" },
