@@ -1,17 +1,29 @@
+"use client";
+
+import { useState } from "react";
+import { T, LANGS, type Lang } from "./translations";
+
 export default function Home() {
+  const [lang, setLang] = useState<Lang>("de");
+  const t = T[lang];
+
   return (
     <div className="flex flex-col w-full">
       {/* Header */}
       <header className="sticky top-0 z-50 backdrop-blur-md border-b border-cyan-400/10 bg-slate-950/80">
-        <nav className="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
-          <div className="text-2xl font-bold text-cyan-400">⚡ HERPERT</div>
-          <div className="hidden md:flex gap-8 text-sm">
-            <a href="#workflow" className="hover:text-cyan-400 transition">Workflow</a>
-            <a href="#module" className="hover:text-cyan-400 transition">Module</a>
-            <a href="#solidworks" className="hover:text-cyan-400 transition">SolidWorks</a>
-            <a href="#contact" className="hover:text-cyan-400 transition">Kontakt</a>
+        <nav className="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center gap-4">
+          <div className="text-2xl font-bold text-cyan-400 shrink-0">⚡ HERPERT</div>
+          <div className="hidden lg:flex gap-8 text-sm">
+            <a href="#workflow" className="hover:text-cyan-400 transition">{t.nav.workflow}</a>
+            <a href="#module" className="hover:text-cyan-400 transition">{t.nav.modules}</a>
+            <a href="#solidworks" className="hover:text-cyan-400 transition">{t.nav.solidworks}</a>
+            <a href="#uebersetzung" className="hover:text-cyan-400 transition">{t.nav.translation}</a>
+            <a href="#contact" className="hover:text-cyan-400 transition">{t.nav.contact}</a>
           </div>
-          <button className="btn-primary text-sm">Demo anfragen</button>
+          <div className="flex items-center gap-3 shrink-0">
+            <LangSwitcher lang={lang} setLang={setLang} />
+            <button className="btn-primary text-sm hidden sm:block">{t.nav.cta}</button>
+          </div>
         </nav>
       </header>
 
@@ -24,49 +36,34 @@ export default function Home() {
 
         <div className="max-w-4xl mx-auto text-center">
           <div className="inline-block mb-6 px-4 py-1.5 rounded-full border border-cyan-400/30 text-cyan-400 text-sm">
-            ERP · PDM · SolidWorks-Integration
+            {t.hero.badge}
           </div>
           <h1 className="text-5xl md:text-7xl font-bold mb-6 leading-tight">
-            Von der Konstruktion
+            {t.hero.title1}
             <br />
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-cyan-300">
-              bis zur Fertigung
+              {t.hero.title2}
             </span>
           </h1>
           <p className="text-xl text-slate-300 mb-8 max-w-2xl mx-auto leading-relaxed">
-            HERPERT ist das ERP-System für konstruktionsnahe Fertigung. Produktdaten,
-            Stücklisten, Beschaffung und Produktion in einem System — direkt verbunden
-            mit SolidWorks und Microsoft 365.
+            {t.hero.subtitle}
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <button className="btn-primary px-8 py-4 text-lg">
-              → Live Demo
-            </button>
-            <button className="btn-secondary px-8 py-4 text-lg">
-              Mehr erfahren
-            </button>
+            <button className="btn-primary px-8 py-4 text-lg">{t.hero.demo}</button>
+            <button className="btn-secondary px-8 py-4 text-lg">{t.hero.more}</button>
           </div>
         </div>
       </section>
 
       {/* Workflow */}
       <section id="workflow" className="py-20 px-6 max-w-6xl mx-auto w-full">
-        <h2 className="text-4xl font-bold text-center mb-4">Ein durchgängiger Prozess</h2>
-        <p className="text-center text-slate-400 mb-16 max-w-2xl mx-auto">
-          HERPERT begleitet das Bauteil über seinen gesamten Lebenszyklus — kein
-          Medienbruch zwischen CAD, Datenverwaltung und Fertigung.
-        </p>
+        <h2 className="text-4xl font-bold text-center mb-4">{t.workflow.title}</h2>
+        <p className="text-center text-slate-400 mb-16 max-w-2xl mx-auto">{t.workflow.subtitle}</p>
         <div className="grid md:grid-cols-5 gap-4">
-          {[
-            { step: "1", title: "Konstruktion", desc: "SolidWorks Add-in legt PDM-Objekte direkt aus dem CAD an", icon: "✏️" },
-            { step: "2", title: "PDM", desc: "Produktdaten, Klassifizierung, Thumbnails, Lifecycle-Status", icon: "📦" },
-            { step: "3", title: "Stückliste", desc: "Mehrstufige BOM automatisch aus der Baugruppe", icon: "🗂️" },
-            { step: "4", title: "Beschaffung", desc: "Bestellungen, Lieferanten, Bedarfsermittlung", icon: "🛒" },
-            { step: "5", title: "Produktion", desc: "Fertigungsaufträge, Material-Reservierung", icon: "🏭" },
-          ].map((s, i) => (
+          {t.workflow.steps.map((s, i) => (
             <div key={i} className="glass-hover p-5 text-center relative">
               <div className="text-3xl mb-3">{s.icon}</div>
-              <div className="text-xs text-cyan-400 font-mono mb-1">SCHRITT {s.step}</div>
+              <div className="text-xs text-cyan-400 font-mono mb-1">{s.step}</div>
               <h3 className="font-semibold mb-2">{s.title}</h3>
               <p className="text-sm text-slate-400">{s.desc}</p>
             </div>
@@ -76,43 +73,38 @@ export default function Home() {
 
       {/* Module */}
       <section id="module" className="py-20 px-6 max-w-6xl mx-auto w-full">
-        <h2 className="text-4xl font-bold text-center mb-16">Module</h2>
+        <h2 className="text-4xl font-bold text-center mb-16">{t.modules.title}</h2>
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {[
-            {
-              title: "📦 PDM",
-              desc: "Zentrale Produktdatenverwaltung — Klassifizierung, Eigenschaften, Thumbnails, Lieferanten- und Projektzuordnung, Lifecycle-Status.",
-            },
-            {
-              title: "🗂️ Stücklisten (BOM)",
-              desc: "Mehrstufige Stücklisten mit Explosion, Master-BOM und Excel-Import. Automatisch aus der SolidWorks-Baugruppe generiert.",
-            },
-            {
-              title: "🛒 Beschaffung",
-              desc: "Bestellungen mit Positionen, Lieferantenverwaltung, automatische Bedarfsermittlung aus der BOM-Explosion.",
-            },
-            {
-              title: "🏭 Produktion",
-              desc: "Fertigungsaufträge, SOLL-Bedarf, Material-Reservierungen aus dem Bestand, Zuordnung von Stücklisten.",
-            },
-            {
-              title: "👥 CRM",
-              desc: "Unternehmen und Kontakte, Lieferanten und Kunden, Firmenkürzel und Projektzuordnung.",
-            },
-            {
-              title: "⚡ Blitz Email",
-              desc: "PDM-integrierter Email-Client für Microsoft 365. Emails mit Projekten, Bestellungen und Tasks verknüpfen, KI-Unterstützung via Igor.",
-            },
-          ].map((feature, i) => (
+          {t.modules.items.map((feature, i) => (
             <div key={i} className="glass-hover p-6 group">
               <h3 className="text-xl font-semibold mb-3 group-hover:text-cyan-400 transition">
                 {feature.title}
               </h3>
-              <p className="text-slate-400 group-hover:text-slate-300 transition">
-                {feature.desc}
-              </p>
+              <p className="text-slate-400 group-hover:text-slate-300 transition">{feature.desc}</p>
             </div>
           ))}
+        </div>
+      </section>
+
+      {/* Übersetzung — Mega Feature */}
+      <section id="uebersetzung" className="py-20 px-6 max-w-6xl mx-auto w-full">
+        <div className="glass p-8 md:p-12 grid md:grid-cols-2 gap-10 items-center">
+          <div>
+            <div className="inline-block mb-4 px-3 py-1 rounded-full bg-cyan-400/10 text-cyan-400 text-xs font-mono">
+              {t.translation.badge}
+            </div>
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">{t.translation.title}</h2>
+            <p className="text-slate-300 mb-6 leading-relaxed">{t.translation.desc}</p>
+            <ul className="space-y-3 text-slate-300">
+              {t.translation.points.map((p, i) => (
+                <li key={i} className="flex gap-3">
+                  <span className="text-cyan-400">→</span>
+                  {p}
+                </li>
+              ))}
+            </ul>
+          </div>
+          <TranslationDemo label={t.translation.demoLabel} />
         </div>
       </section>
 
@@ -121,37 +113,21 @@ export default function Home() {
         <div className="glass p-8 md:p-12 grid md:grid-cols-2 gap-10 items-center">
           <div>
             <div className="inline-block mb-4 px-3 py-1 rounded-full bg-cyan-400/10 text-cyan-400 text-xs font-mono">
-              NATIVE INTEGRATION
+              {t.solidworks.badge}
             </div>
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">
-              Direkt aus SolidWorks
-            </h2>
-            <p className="text-slate-300 mb-6 leading-relaxed">
-              Das HERPERT Add-in lebt im SolidWorks Task Pane. Engineers legen
-              PDM-Objekte an, schreiben Eigenschaften zurück ins CAD und erzeugen
-              komplette Stücklisten — ohne SolidWorks zu verlassen.
-            </p>
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">{t.solidworks.title}</h2>
+            <p className="text-slate-300 mb-6 leading-relaxed">{t.solidworks.desc}</p>
             <ul className="space-y-3 text-slate-300">
-              <li className="flex gap-3">
-                <span className="text-cyan-400">→</span>
-                Eigenschaften zwischen SolidWorks und PDM synchronisieren
-              </li>
-              <li className="flex gap-3">
-                <span className="text-cyan-400">→</span>
-                Baugruppe durchlaufen und fehlende Teile automatisch anlegen
-              </li>
-              <li className="flex gap-3">
-                <span className="text-cyan-400">→</span>
-                Mehrstufige BOM mit einem Klick speichern
-              </li>
-              <li className="flex gap-3">
-                <span className="text-cyan-400">→</span>
-                Thumbnails automatisch erfassen und ablegen
-              </li>
+              {t.solidworks.points.map((p, i) => (
+                <li key={i} className="flex gap-3">
+                  <span className="text-cyan-400">→</span>
+                  {p}
+                </li>
+              ))}
             </ul>
           </div>
           <div className="glass bg-slate-950/50 p-6 font-mono text-sm">
-            <div className="text-cyan-400 mb-4 text-xs">SolidWorks Task Pane</div>
+            <div className="text-cyan-400 mb-4 text-xs">{t.solidworks.paneTitle}</div>
             <div className="space-y-2">
               <div className="flex justify-between border-b border-cyan-400/10 pb-2">
                 <span className="text-slate-500">PART</span>
@@ -170,17 +146,11 @@ export default function Home() {
       {/* CTA */}
       <section id="contact" className="py-20 px-6">
         <div className="max-w-4xl mx-auto glass p-12 text-center">
-          <h2 className="text-4xl font-bold mb-6">Bereit für durchgängige Prozesse?</h2>
-          <p className="text-xl text-slate-300 mb-8">
-            Sehen Sie, wie HERPERT Konstruktion und Fertigung verbindet.
-          </p>
+          <h2 className="text-4xl font-bold mb-6">{t.cta.title}</h2>
+          <p className="text-xl text-slate-300 mb-8">{t.cta.subtitle}</p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <button className="btn-primary px-8 py-4 text-lg">
-              Demo vereinbaren
-            </button>
-            <button className="btn-secondary px-8 py-4 text-lg">
-              Kontakt aufnehmen
-            </button>
+            <button className="btn-primary px-8 py-4 text-lg">{t.cta.demo}</button>
+            <button className="btn-secondary px-8 py-4 text-lg">{t.cta.contact}</button>
           </div>
         </div>
       </section>
@@ -188,14 +158,66 @@ export default function Home() {
       {/* Footer */}
       <footer className="border-t border-cyan-400/10 px-6 py-8">
         <div className="max-w-6xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-4 text-sm text-slate-400">
-          <div>© 2026 HERPERT — ERP für Konstruktion & Fertigung</div>
+          <div>© 2026 HERPERT — {t.footer.tagline}</div>
           <div className="flex gap-6">
-            <a href="#" className="hover:text-cyan-400 transition">Impressum</a>
-            <a href="#" className="hover:text-cyan-400 transition">Datenschutz</a>
-            <a href="#" className="hover:text-cyan-400 transition">Kontakt</a>
+            <a href="#" className="hover:text-cyan-400 transition">{t.footer.imprint}</a>
+            <a href="#" className="hover:text-cyan-400 transition">{t.footer.privacy}</a>
+            <a href="#" className="hover:text-cyan-400 transition">{t.footer.contact}</a>
           </div>
         </div>
       </footer>
+    </div>
+  );
+}
+
+function LangSwitcher({ lang, setLang }: { lang: Lang; setLang: (l: Lang) => void }) {
+  return (
+    <div className="flex gap-1 p-1 rounded-lg bg-slate-800/50 border border-cyan-400/10">
+      {LANGS.map((l) => (
+        <button
+          key={l.code}
+          onClick={() => setLang(l.code)}
+          className={`px-2.5 py-1 rounded text-sm transition ${
+            lang === l.code
+              ? "bg-cyan-400 text-slate-950 font-semibold"
+              : "text-slate-400 hover:text-cyan-400"
+          }`}
+          aria-label={l.label}
+        >
+          {l.flag}
+        </button>
+      ))}
+    </div>
+  );
+}
+
+const DEMO_PHRASES: Record<Lang, string> = {
+  de: "Lagerbock fräsen, Toleranz H7, bis Freitag",
+  en: "Mill bearing block, tolerance H7, by Friday",
+  hu: "Csapágybak marása, H7 tűrés, péntekig",
+};
+
+function TranslationDemo({ label }: { label: string }) {
+  return (
+    <div className="glass bg-slate-950/50 p-6 font-mono text-sm">
+      <div className="flex items-center justify-between mb-4">
+        <span className="text-cyan-400 text-xs">{label}</span>
+        <span className="flex items-center gap-1.5 text-xs text-green-400">
+          <span className="w-2 h-2 rounded-full bg-green-400 animate-pulse"></span>
+          Igor AI
+        </span>
+      </div>
+      <div className="space-y-3">
+        {LANGS.map((l) => (
+          <div key={l.code} className="bg-slate-800/50 rounded px-3 py-2.5">
+            <div className="flex items-center gap-2 mb-1">
+              <span>{l.flag}</span>
+              <span className="text-xs text-slate-500 uppercase">{l.code}</span>
+            </div>
+            <div className="text-slate-200">{DEMO_PHRASES[l.code]}</div>
+          </div>
+        ))}
+      </div>
     </div>
   );
 }
