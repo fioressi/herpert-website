@@ -58,7 +58,7 @@ function Banner({ ws, setWs }: { ws: WS; setWs: (w: WS) => void }) {
             <span className="text-slate-300">Ich (Admin)</span>
             <span className="text-slate-500">⌄</span>
           </div>
-          <span className="text-slate-300 hidden md:inline">Matthaeus Unger</span>
+          <span className="text-slate-300 hidden md:inline">Alex Berger</span>
           {showMail && (
             <button className="px-3 py-1.5 rounded-lg border border-cyan-400/40 text-cyan-300 hover:bg-cyan-400/10 transition whitespace-nowrap">
               ✉ Neue E-Mail
@@ -94,22 +94,22 @@ function Banner({ ws, setWs }: { ws: WS; setWs: (w: WS) => void }) {
 
 /* ── Shared side-panel data ─────────────────────────────────────────────── */
 const PROJECTS = [
-  { code: "R26081", name: "AVID S7", status: "NOT STARTED" },
-  { code: "R25078", name: "Apogee NOVA", status: "NOT STARTED" },
-  { code: "H24002", name: "GPV Ampelknopf", status: "NOT STARTED" },
-  { code: "H22001", name: "MEINE ERDE REERDIGUNG", status: "STARTED" },
+  { code: "P26-014", name: "Förderband V2", status: "STARTED" },
+  { code: "P26-009", name: "Greifmodul X3", status: "NOT STARTED" },
+  { code: "P25-103", name: "Spannvorrichtung A", status: "NOT STARTED" },
+  { code: "P26-021", name: "Gehäuse Serie 4", status: "NOT STARTED" },
 ];
 const WORKPACKAGES = [
-  "H24002 GPV Proto",
-  "H22001 PRODUKTION LÜFTUNG",
-  "H22001 PRODUKTIONSVORBEREITUNG",
-  "H22001 ECO S9A",
-  "H22001 PURCHASING",
-  "NOVA ECN3",
+  "P26-014 Montage",
+  "P26-009 Konstruktion",
+  "P26-009 Fertigung",
+  "P25-103 Prüfung",
+  "P26-021 Lackierung",
+  "P26-014 Verdrahtung",
 ];
 const TASKS_PANEL = [
-  "Readiness bestaetigen fuer PR-2026-0003",
-  "Pruefplan freigeben fuer PR-2026-0003",
+  "Freigabe bestätigen für PR-2026-0042",
+  "Prüfplan freigeben für PR-2026-0042",
 ];
 
 function LeftPanel() {
@@ -165,10 +165,10 @@ function PanelSection({ title, icon, children }: { title: string; icon: string; 
 type MStatus = "inbox" | "read" | "reply" | "saved" | "sent";
 
 const EMAILS: { id: string; from: string; time: string; subject: string; preview: string; status: MStatus }[] = [
-  { id: "1", from: "Matthaeus Unger", time: "11:02", subject: "Bestellung PO-2026-0013", preview: "Sehr geehrte Damen und Herren (HUNGEMA Kft.), hiermit beauftragen wir Sie mit der Bestellung PO-2026-0013: H-5006-13441-9A CONCRETE TOOL LID BUTTOM 1 1,00 EUR …", status: "inbox" },
-  { id: "2", from: "Matthaeus Unger", time: "10:45", subject: "Bestellung PO-2026-0012", preview: "Dear Sir or Madam (HUNGEMA Ltd.), I authorize you to place the order PO-2026-0012: H-5006-13441-9A CONCRETE TOOL COVER LOWER 1 1.00 EUR H-5006-13443-9A …", status: "inbox" },
-  { id: "3", from: "Matthaeus Unger", time: "08:03", subject: "Summary of Unread Emails: Needs Response, FYI, and Other Important Emails", preview: "Needs Response * Sender: Microsoft Power Platform — Your Developer environment will be deleted in 3 days due to inactivity …", status: "inbox" },
-  { id: "4", from: "Microsoft", time: "07:52", subject: "Ihre Microsoft-Rechnung G163776094 ist bereit.", preview: "Ihre monatliche Rechnung für Azure-Dienste steht zum Download bereit …", status: "inbox" },
+  { id: "1", from: "Lena Hofer", time: "11:02", subject: "Bestellung PO-2026-0021", preview: "Sehr geehrte Damen und Herren (Nordmetall GmbH), hiermit beauftragen wir Sie mit der Bestellung PO-2026-0021: H-7206-14021-90 Halteblech links · 4 · 28,50 EUR …", status: "inbox" },
+  { id: "2", from: "Marek Kovács", time: "10:45", subject: "Angebot Präzitec Kft.", preview: "Guten Tag, anbei unser Angebot zu RFQ #34. Position 3 können wir mit kürzerer Lieferzeit anbieten, Details im PDF …", status: "inbox" },
+  { id: "3", from: "Tobias Reiner", time: "08:03", subject: "Rückfrage Toleranz Position 4", preview: "Hallo, zur Bohrung an Position 4 brauchen wir die Toleranz — H7 oder freier? Sonst pausiert die Fertigung …", status: "inbox" },
+  { id: "4", from: "Sofia Brandt", time: "07:52", subject: "Lieferavis Nordmetall — KW 25", preview: "Die Teile aus PO-2026-0018 sind kommissioniert und gehen morgen raus. Tracking folgt separat …", status: "inbox" },
 ];
 
 function PostView() {
@@ -309,9 +309,9 @@ const KPIS: { v: string; l: string; c: string }[] = [
   { v: "68", l: "Risiken", c: "text-rose-400" },
 ];
 const ORDER_CARDS = [
-  { id: "PR-2026-0003", desc: "Produktion von 8 Sets …", status: "PLANNED", color: "#94a3b8" },
-  { id: "PR-2026-0002", desc: "Werkzeugbau für Prod…", status: "PLANNED", color: "#94a3b8" },
-  { id: "PR-2026-0001", desc: "Produktion von 14 SETS", status: "IN_PROGRESS", color: "#5bc8ea" },
+  { id: "PR-2026-0042", desc: "Produktion von 12 Sets …", status: "PLANNED", color: "#94a3b8" },
+  { id: "PR-2026-0041", desc: "Werkzeugbau Gehäuse…", status: "PLANNED", color: "#94a3b8" },
+  { id: "PR-2026-0040", desc: "Serie 4 Montage", status: "IN_PROGRESS", color: "#5bc8ea" },
 ];
 
 function AuftragsDashboard({ onBack }: { onBack: () => void }) {
@@ -360,14 +360,14 @@ function AuftragsDashboard({ onBack }: { onBack: () => void }) {
 
       {/* three columns */}
       <div className="grid md:grid-cols-3 gap-4">
-        <DashColumn title="RFQs ›" sub="offen 0 · beantwortet 2 · ohne Preis 0">
-          <DashRow>#28 · HUNGEMA Kft. · CLOSED · 2 Pos. ›</DashRow>
-          <DashRow>#16 · Ferolaser Kft · CLOSED · 2 Pos. ›</DashRow>
+        <DashColumn title="RFQs ›" sub="offen 1 · beantwortet 2 · ohne Preis 0">
+          <DashRow>#34 · Nordmetall GmbH · CLOSED · 3 Pos. ›</DashRow>
+          <DashRow>#29 · Präzitec Kft. · OFFEN · 2 Pos. ›</DashRow>
         </DashColumn>
-        <DashColumn title="Bestellungen ›" sub="offen 2 · unterwegs 0 · angek. 2 · überfällig 0">
-          <DashRow>PO-2026-0011 · Ferolaser Kft · ARRIVED · 443,98 EUR ›</DashRow>
-          <DashRow>PO-2026-0007 · HUNGEMA Kft. · ARRIVED · 2,00 EUR ›</DashRow>
-          <DashRow>PO-26000053 · Fluidtech Kft. · CANCELLED · 82.376,00 EUR ›</DashRow>
+        <DashColumn title="Bestellungen ›" sub="offen 1 · unterwegs 1 · angek. 1 · überfällig 0">
+          <DashRow>PO-2026-0021 · Präzitec Kft. · ARRIVED · 1.240,00 EUR ›</DashRow>
+          <DashRow>PO-2026-0018 · Nordmetall GmbH · OFFEN · 3.880,00 EUR ›</DashRow>
+          <DashRow>PO-2026-0009 · FeinTech Kft. · CANCELLED · 12.500,00 EUR ›</DashRow>
         </DashColumn>
         <DashColumn title="Lager ›" sub="Bestand 4 · reserviert 0 · fehlt 136">
           <DashRow><span className="text-slate-300 font-semibold">Lücken ›</span> Lieferant 8 · Preis 116 · Bestellung 136</DashRow>
@@ -417,36 +417,42 @@ const BRETT: { title: string; icon: string; color: string; count: number; cards:
   },
   {
     title: "Arbeitspakete", icon: "📦", color: "#8b5cf6", count: 6,
-    cards: ["H24002 GPV Proto", "H22001 PRODUKTION LÜFTUNG", "H22001 PRODUKTIONSVORBEREITUNG", "H22001 ECO S9A", "H22001 PURCHASING", "NOVA ECN3"].map((w) => (
+    cards: WORKPACKAGES.map((w) => (
       <BrettCard key={w}>
         <div className="text-sm text-slate-100">{w}</div>
-        <KV k="Verantwortl." v="Matthaeus Unger" /><KV k="Tasks" v="1 offen / 1 gesamt" />
+        <KV k="Verantwortl." v="Alex Berger" /><KV k="Tasks" v="1 offen / 1 gesamt" />
       </BrettCard>
     )),
   },
   {
-    title: "Emails", icon: "✉", color: "#5bc8ea", count: 36,
-    cards: ["Bestellung PO-2026-0013", "Bestellung PO-2026-0012", "Summary of Unread Emails", "Ihre Microsoft-Rechnung G163776094", "FIORESI.COM - Domain Broker Service"].map((s, i) => (
-      <BrettCard key={i}>
-        <div className="text-sm text-slate-100 line-clamp-2">{s}</div>
-        <KV k="Von" v={i === 4 ? "Elvira Tsekova" : i === 3 ? "Microsoft" : "Matthaeus Unger"} /><KV k="Datum" v="10.6.2026" />
-      </BrettCard>
-    )),
-  },
-  {
-    title: "Tasks", icon: "📋", color: "#f59e0b", count: 13,
+    title: "Emails", icon: "✉", color: "#5bc8ea", count: 18,
     cards: [
-      <BrettCard key="t1"><div className="text-sm text-slate-100">Luchtlöcher 2mm ANPASSEN. SOFORT</div><div className="flex gap-1 mt-1.5"><Badge c="emerald">DONE</Badge><Badge c="slate">OTHER</Badge><Badge c="cyan">NORMAL</Badge></div></BrettCard>,
-      <BrettCard key="t2"><div className="text-sm text-slate-100">Betonwerkzeug anpassen</div><div className="flex gap-1 mt-1.5"><Badge c="amber">IN_PROGRESS</Badge><Badge c="slate">CHANGE_OBJECT</Badge></div><div className="flex gap-1 mt-1"><Badge c="amber">▲ HIGH</Badge><Badge c="rose">⚠ 20.5.2026</Badge></div><div className="text-[11px] text-slate-400 mt-1">👤 Robert Rác</div></BrettCard>,
-      <BrettCard key="t3"><div className="text-sm text-slate-100">Räder umstellen (gebremste, ungebremste)</div><div className="flex gap-1 mt-1.5"><Badge c="blue">NEW</Badge><Badge c="slate">OTHER</Badge><Badge c="cyan">NORMAL</Badge></div></BrettCard>,
-      <BrettCard key="t4"><div className="text-sm text-slate-100">H-7200-13170-92 Seitenteil anpassen</div><div className="flex gap-1 mt-1.5"><Badge c="amber">IN_PROGRESS</Badge><Badge c="slate">OTHER</Badge></div></BrettCard>,
+      { s: "Bestellung PO-2026-0021", v: "Lena Hofer" },
+      { s: "Angebot Präzitec Kft.", v: "Marek Kovács" },
+      { s: "Rückfrage Toleranz Position 4", v: "Tobias Reiner" },
+      { s: "Lieferavis Nordmetall — KW 25", v: "Sofia Brandt" },
+      { s: "Rechnung R-2026-0188", v: "David Lang" },
+    ].map((e, i) => (
+      <BrettCard key={i}>
+        <div className="text-sm text-slate-100 line-clamp-2">{e.s}</div>
+        <KV k="Von" v={e.v} /><KV k="Datum" v="10.6.2026" />
+      </BrettCard>
+    )),
+  },
+  {
+    title: "Tasks", icon: "📋", color: "#f59e0b", count: 9,
+    cards: [
+      <BrettCard key="t1"><div className="text-sm text-slate-100">Bohrbild anpassen, H7</div><div className="flex gap-1 mt-1.5"><Badge c="emerald">DONE</Badge><Badge c="slate">OTHER</Badge><Badge c="cyan">NORMAL</Badge></div></BrettCard>,
+      <BrettCard key="t2"><div className="text-sm text-slate-100">Gehäuse entgraten</div><div className="flex gap-1 mt-1.5"><Badge c="amber">IN_PROGRESS</Badge><Badge c="slate">CHANGE_OBJECT</Badge></div><div className="flex gap-1 mt-1"><Badge c="amber">▲ HIGH</Badge><Badge c="rose">⚠ 12.6.2026</Badge></div><div className="text-[11px] text-slate-400 mt-1">👤 Marek Kovács</div></BrettCard>,
+      <BrettCard key="t3"><div className="text-sm text-slate-100">Prüfprotokoll erstellen</div><div className="flex gap-1 mt-1.5"><Badge c="blue">NEW</Badge><Badge c="slate">OTHER</Badge><Badge c="cyan">NORMAL</Badge></div></BrettCard>,
+      <BrettCard key="t4"><div className="text-sm text-slate-100">H-7206-14088-92 Seitenteil anpassen</div><div className="flex gap-1 mt-1.5"><Badge c="amber">IN_PROGRESS</Badge><Badge c="slate">OTHER</Badge></div></BrettCard>,
     ],
   },
   {
     title: "Bestellungen", icon: "🛒", color: "#10b981", count: 2,
     cards: [
-      <BrettCard key="b1"><div className="text-sm font-semibold text-slate-100">PO-2026-0011</div><KV k="Lieferant" v="Ferolaser Kft" /><KV k="Status" v="ARRIVED" /></BrettCard>,
-      <BrettCard key="b2"><div className="text-sm font-semibold text-slate-100">PO-2026-0007</div><KV k="Lieferant" v="HUNGEMA Kft." /><KV k="Status" v="ARRIVED" /></BrettCard>,
+      <BrettCard key="b1"><div className="text-sm font-semibold text-slate-100">PO-2026-0021</div><KV k="Lieferant" v="Präzitec Kft." /><KV k="Status" v="ARRIVED" /></BrettCard>,
+      <BrettCard key="b2"><div className="text-sm font-semibold text-slate-100">PO-2026-0018</div><KV k="Lieferant" v="Nordmetall GmbH" /><KV k="Status" v="OFFEN" /></BrettCard>,
     ],
   },
   { title: "Rechnungen", icon: "🧾", color: "#a855f7", count: 0, cards: [<div key="none" className="text-xs text-slate-500 italic px-1">Keine Einträge</div>] },
@@ -496,19 +502,19 @@ function Badge({ children, c }: { children: React.ReactNode; c: string }) {
 /* ── Termine (calendar) ─────────────────────────────────────────────────── */
 const WD = ["MO", "DI", "MI", "DO", "FR", "SA", "SO"];
 const CAL_EVENTS: Record<number, { label: string; color: string }[]> = {
-  2: [{ label: "Erinnerung go-int…", color: "#3b82f6" }],
-  3: [{ label: "Alexi in Ibiza", color: "#8b5cf6" }, { label: "NOVA-Matthaeus…", color: "#5bc8ea" }],
-  4: [{ label: "HGM / ME: weekly", color: "#3b82f6" }],
-  5: [{ label: "Meeting", color: "#8b5cf6" }, { label: "PATMOS <> Apo…", color: "#5bc8ea" }],
-  6: [{ label: "H-7200-13170-9…", color: "#10b981" }],
-  10: [{ label: "NOVA-Matthaeus…", color: "#5bc8ea" }],
-  11: [{ label: "HGM / ME: weekly", color: "#3b82f6" }],
-  12: [{ label: "PATMOS <> Apo…", color: "#5bc8ea" }],
-  18: [{ label: "Alexi Augenlider…", color: "#8b5cf6" }, { label: "HGM / ME: weekly", color: "#3b82f6" }],
-  19: [{ label: "PATMOS <> Apo…", color: "#5bc8ea" }],
-  24: [{ label: "NOVA-Matthaeus…", color: "#5bc8ea" }],
-  25: [{ label: "HGM / ME: weekly", color: "#3b82f6" }],
-  26: [{ label: "PATMOS <> Apo…", color: "#5bc8ea" }],
+  2: [{ label: "Projektreview P26-014", color: "#3b82f6" }],
+  3: [{ label: "Werkstatt-Meeting", color: "#8b5cf6" }, { label: "Sync Konstruktion", color: "#5bc8ea" }],
+  4: [{ label: "Weekly Sync", color: "#3b82f6" }],
+  5: [{ label: "Kickoff P26-021", color: "#8b5cf6" }, { label: "Lieferung Präzitec", color: "#5bc8ea" }],
+  6: [{ label: "Abnahme P26-014", color: "#10b981" }],
+  10: [{ label: "Sync Konstruktion", color: "#5bc8ea" }],
+  11: [{ label: "Weekly Sync", color: "#3b82f6" }],
+  12: [{ label: "QS-Termin", color: "#5bc8ea" }],
+  18: [{ label: "Review Greifmodul", color: "#8b5cf6" }, { label: "Weekly Sync", color: "#3b82f6" }],
+  19: [{ label: "QS-Termin", color: "#5bc8ea" }],
+  24: [{ label: "Sync Konstruktion", color: "#5bc8ea" }],
+  25: [{ label: "Weekly Sync", color: "#3b82f6" }],
+  26: [{ label: "Abnahme P26-021", color: "#5bc8ea" }],
 };
 
 function TermineView() {
@@ -564,8 +570,8 @@ function Arbeitsablage() {
           <div className="inline-flex items-center gap-2 rounded-lg bg-slate-800/60 border border-cyan-400/10 px-3 py-2 max-w-xs">
             <span className="text-slate-500">✉</span>
             <div className="min-w-0">
-              <div className="text-xs text-slate-200 truncate">Rastelli Raccordi</div>
-              <div className="text-[10px] text-slate-500 truncate">Rosario Bordino - Rastelli Raccor</div>
+              <div className="text-xs text-slate-200 truncate">Angebot Nordmetall</div>
+              <div className="text-[10px] text-slate-500 truncate">Lena Hofer · Nordmetall GmbH</div>
             </div>
             <span className="text-slate-500 text-xs ml-2">↗ ×</span>
           </div>
