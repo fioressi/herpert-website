@@ -7,7 +7,20 @@ export const LANGS: { code: Lang; label: string; flag: string }[] = [
 ];
 
 type Content = {
-  nav: { workflow: string; modules: string; solidworks: string; translation: string; contact: string; cta: string };
+  nav: { workflow: string; modules: string; pdm: string; solidworks: string; translation: string; contact: string; cta: string };
+  pdm: {
+    badge: string;
+    title: string;
+    desc: string;
+    partIdLabel: string;
+    segments: { code: string; label: string; hint: string }[];
+    example: string;
+    familiesTitle: string;
+    families: { range: string; name: string }[];
+    lifecycleTitle: string;
+    lifecycleNote: string;
+    phases: { code: string; phase: string; stage: string; color: string }[];
+  };
   hero: { badge: string; title1: string; title2: string; subtitle: string; demo: string; more: string };
   workflow: {
     title: string;
@@ -41,7 +54,40 @@ type Content = {
 
 export const T: Record<Lang, Content> = {
   de: {
-    nav: { workflow: "Workflow", modules: "Module", solidworks: "SolidWorks", translation: "Übersetzung", contact: "Kontakt", cta: "Demo anfragen" },
+    nav: { workflow: "Workflow", modules: "Module", pdm: "PDM-Logik", solidworks: "SolidWorks", translation: "Übersetzung", contact: "Kontakt", cta: "Demo anfragen" },
+    pdm: {
+      badge: "GROUP PDM · DATENMODELL",
+      title: "Eine PartId, die alles erzählt",
+      desc: "Jedes Objekt — Teil, Baugruppe, Dokument, Werkzeug, Rohmaterial — bekommt eine unveränderliche PartId. Vier Segmente codieren Eigentümer, Klasse, Identität und Reifegrad. Die ID ändert sich nie; ein Statuswechsel erzeugt eine neue Zeile mit demselben UniqueKey.",
+      partIdLabel: "Aufbau der PartId",
+      segments: [
+        { code: "H", label: "CompanyCode", hint: "1 Buchstabe · besitzende Firma" },
+        { code: "7206", label: "ClassCode", hint: "4 Ziffern · Objektklasse (125 Klassen)" },
+        { code: "13282", label: "UniqueKey", hint: "5 Zeichen · permanent, nie wiederverwendet" },
+        { code: "90", label: "StatusCode", hint: "2 Ziffern · Reifegrad im Lifecycle" },
+      ],
+      example: "H-7206-13282-90 = Hungema · Blechteil · Key 13282 · Prototyp",
+      familiesTitle: "Klassen-Familien (125 Klassen in 15 Familien)",
+      families: [
+        { range: "1001–1104", name: "Dokumente (Konstruktion & Fertigung)" },
+        { range: "4001–4009", name: "Rohmaterialien" },
+        { range: "5001–5009", name: "Werkzeuge & Vorrichtungen" },
+        { range: "6001–6010", name: "Prozesse & Oberflächen" },
+        { range: "7000–7090", name: "Baugruppen, Teile, Systeme, PCBAs" },
+        { range: "7200–7208", name: "Fertigungstechnologien" },
+        { range: "7610–7881", name: "Elektrik, Elektronik, Hardware" },
+        { range: "9000–9160", name: "Versand, Endmontage, Verkaufsteile" },
+      ],
+      lifecycleTitle: "Status-Lifecycle (StatusCode-Segment)",
+      lifecycleNote: "COTS-/Kaufteile bleiben immer auf 00 — der Lebenszyklus gilt nur für Eigenentwicklung.",
+      phases: [
+        { code: "00", phase: "COTS", stage: "Kaufteil", color: "#6b7280" },
+        { code: "20–49", phase: "DOV", stage: "Vision · Evaluation → Ideation", color: "#8b5cf6" },
+        { code: "50–89", phase: "NPD", stage: "Entwicklung · Konzept → Verifikation", color: "#3b82f6" },
+        { code: "90–99", phase: "NPI", stage: "Einführung · Industrialisierung", color: "#f59e0b" },
+        { code: "01–09", phase: "Ramp Up", stage: "Serienproduktion", color: "#10b981" },
+      ],
+    },
     hero: {
       badge: "ERP · PDM · SolidWorks-Integration",
       title1: "Von der Konstruktion",
@@ -117,7 +163,40 @@ export const T: Record<Lang, Content> = {
   },
 
   en: {
-    nav: { workflow: "Workflow", modules: "Modules", solidworks: "SolidWorks", translation: "Translation", contact: "Contact", cta: "Request demo" },
+    nav: { workflow: "Workflow", modules: "Modules", pdm: "PDM logic", solidworks: "SolidWorks", translation: "Translation", contact: "Contact", cta: "Request demo" },
+    pdm: {
+      badge: "GROUP PDM · DATA MODEL",
+      title: "One PartId that tells the whole story",
+      desc: "Every object — part, assembly, document, tool, raw material — gets an immutable PartId. Four segments encode owner, class, identity and maturity. The ID never changes; a status change creates a new row with the same UniqueKey.",
+      partIdLabel: "Anatomy of the PartId",
+      segments: [
+        { code: "H", label: "CompanyCode", hint: "1 letter · owning company" },
+        { code: "7206", label: "ClassCode", hint: "4 digits · object class (125 classes)" },
+        { code: "13282", label: "UniqueKey", hint: "5 chars · permanent, never reused" },
+        { code: "90", label: "StatusCode", hint: "2 digits · maturity in the lifecycle" },
+      ],
+      example: "H-7206-13282-90 = Hungema · Sheet metal part · Key 13282 · Prototype",
+      familiesTitle: "Class families (125 classes across 15 families)",
+      families: [
+        { range: "1001–1104", name: "Documents (engineering & manufacturing)" },
+        { range: "4001–4009", name: "Raw materials" },
+        { range: "5001–5009", name: "Tools & fixtures" },
+        { range: "6001–6010", name: "Processes & finishes" },
+        { range: "7000–7090", name: "Assemblies, parts, systems, PCBAs" },
+        { range: "7200–7208", name: "Fabrication technologies" },
+        { range: "7610–7881", name: "Electrical, electronic, hardware" },
+        { range: "9000–9160", name: "Shipping, final assemblies, sales parts" },
+      ],
+      lifecycleTitle: "Status lifecycle (StatusCode segment)",
+      lifecycleNote: "COTS / purchased parts always stay at 00 — the lifecycle applies only to in-house development.",
+      phases: [
+        { code: "00", phase: "COTS", stage: "Purchased part", color: "#6b7280" },
+        { code: "20–49", phase: "DOV", stage: "Vision · evaluation → ideation", color: "#8b5cf6" },
+        { code: "50–89", phase: "NPD", stage: "Development · concept → verification", color: "#3b82f6" },
+        { code: "90–99", phase: "NPI", stage: "Introduction · industrialize", color: "#f59e0b" },
+        { code: "01–09", phase: "Ramp Up", stage: "Series production", color: "#10b981" },
+      ],
+    },
     hero: {
       badge: "ERP · PDM · SolidWorks integration",
       title1: "From design",
@@ -193,7 +272,40 @@ export const T: Record<Lang, Content> = {
   },
 
   hu: {
-    nav: { workflow: "Folyamat", modules: "Modulok", solidworks: "SolidWorks", translation: "Fordítás", contact: "Kapcsolat", cta: "Demó kérése" },
+    nav: { workflow: "Folyamat", modules: "Modulok", pdm: "PDM-logika", solidworks: "SolidWorks", translation: "Fordítás", contact: "Kapcsolat", cta: "Demó kérése" },
+    pdm: {
+      badge: "GROUP PDM · ADATMODELL",
+      title: "Egy PartId, amely mindent elmesél",
+      desc: "Minden objektum — alkatrész, összeállítás, dokumentum, szerszám, alapanyag — megváltoztathatatlan PartId-t kap. Négy szegmens kódolja a tulajdonost, az osztályt, az identitást és az érettséget. Az azonosító soha nem változik; egy állapotváltás új sort hoz létre ugyanazzal a UniqueKey-jel.",
+      partIdLabel: "A PartId felépítése",
+      segments: [
+        { code: "H", label: "CompanyCode", hint: "1 betű · tulajdonos cég" },
+        { code: "7206", label: "ClassCode", hint: "4 számjegy · objektumosztály (125 osztály)" },
+        { code: "13282", label: "UniqueKey", hint: "5 karakter · állandó, soha nem újrahasznosított" },
+        { code: "90", label: "StatusCode", hint: "2 számjegy · érettség az életciklusban" },
+      ],
+      example: "H-7206-13282-90 = Hungema · Lemezalkatrész · Key 13282 · Prototípus",
+      familiesTitle: "Osztálycsaládok (125 osztály 15 családban)",
+      families: [
+        { range: "1001–1104", name: "Dokumentumok (tervezés és gyártás)" },
+        { range: "4001–4009", name: "Alapanyagok" },
+        { range: "5001–5009", name: "Szerszámok és készülékek" },
+        { range: "6001–6010", name: "Folyamatok és felületek" },
+        { range: "7000–7090", name: "Összeállítások, alkatrészek, rendszerek, PCBA-k" },
+        { range: "7200–7208", name: "Gyártástechnológiák" },
+        { range: "7610–7881", name: "Elektromos, elektronikai, hardver" },
+        { range: "9000–9160", name: "Szállítás, végszerelés, eladási alkatrészek" },
+      ],
+      lifecycleTitle: "Állapot-életciklus (StatusCode szegmens)",
+      lifecycleNote: "A COTS / vásárolt alkatrészek mindig 00-n maradnak — az életciklus csak a saját fejlesztésre vonatkozik.",
+      phases: [
+        { code: "00", phase: "COTS", stage: "Vásárolt alkatrész", color: "#6b7280" },
+        { code: "20–49", phase: "DOV", stage: "Vízió · értékelés → ötletelés", color: "#8b5cf6" },
+        { code: "50–89", phase: "NPD", stage: "Fejlesztés · koncepció → ellenőrzés", color: "#3b82f6" },
+        { code: "90–99", phase: "NPI", stage: "Bevezetés · iparosítás", color: "#f59e0b" },
+        { code: "01–09", phase: "Ramp Up", stage: "Sorozatgyártás", color: "#10b981" },
+      ],
+    },
     hero: {
       badge: "ERP · PDM · SolidWorks integráció",
       title1: "A tervezéstől",

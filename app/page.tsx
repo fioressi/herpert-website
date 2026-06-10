@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { T, LANGS, type Lang } from "./translations";
 import { WorkspaceDemo } from "./BlitzDemo";
+import { PdmAnatomy } from "./PdmAnatomy";
 
 export default function Home() {
   const [lang, setLang] = useState<Lang>("de");
@@ -17,6 +18,7 @@ export default function Home() {
           <div className="hidden lg:flex gap-8 text-sm">
             <a href="#workflow" className="hover:text-cyan-400 transition">{t.nav.workflow}</a>
             <a href="#module" className="hover:text-cyan-400 transition">{t.nav.modules}</a>
+            <a href="#pdm" className="hover:text-cyan-400 transition">{t.nav.pdm}</a>
             <a href="#demo" className="hover:text-cyan-400 transition">Demo</a>
             <a href="#solidworks" className="hover:text-cyan-400 transition">{t.nav.solidworks}</a>
             <a href="#uebersetzung" className="hover:text-cyan-400 transition">{t.nav.translation}</a>
@@ -86,6 +88,18 @@ export default function Home() {
             </div>
           ))}
         </div>
+      </section>
+
+      {/* PDM Nomenklatur / Datenmodell */}
+      <section id="pdm" className="py-20 px-6 max-w-6xl mx-auto w-full">
+        <div className="text-center mb-12 max-w-2xl mx-auto">
+          <div className="inline-block mb-4 px-3 py-1 rounded-full bg-cyan-400/10 text-cyan-400 text-xs font-mono">
+            {t.pdm.badge}
+          </div>
+          <h2 className="text-3xl md:text-4xl font-bold mb-4">{t.pdm.title}</h2>
+          <p className="text-slate-300 leading-relaxed">{t.pdm.desc}</p>
+        </div>
+        <PdmAnatomy lang={lang} />
       </section>
 
       {/* Blitz Live Demo */}
