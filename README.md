@@ -1,36 +1,41 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# ⚡ HERPERT — PDM & Email Management
 
-## Getting Started
+Landing page for HERPERT, an enterprise PDM system with intelligent email integration.
 
-First, run the development server:
+- **Blitz** — PDM-focused email client for Microsoft 365
+- **Group PDM** — Enterprise Product Data Management backend
+
+Built with Next.js 15, TypeScript, and Tailwind CSS.
+
+## Features
+
+- Dark theme with cyan accent (#66d9ef)
+- Glassmorphism design
+- Responsive layout (mobile-first)
+- Landing page with hero, features, products, and CTA sections
+- Auto-deploy to Azure Static Web Apps
+
+## Local Development
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+# Open http://localhost:3000
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Deployment
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+This repo auto-deploys to Azure Static Web Apps on every push to `main`. 
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+**Setup required:**
+1. Create Azure Static Web App resource
+2. Add `AZURE_STATIC_WEB_APPS_API_TOKEN` secret to GitHub
 
-## Learn More
+See `.github/workflows/deploy.yml` for details.
 
-To learn more about Next.js, take a look at the following resources:
+## Design
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- **Font:** Inter (Google Fonts)
+- **Colors:** Slate grays + Cyan (#66d9ef)
+- **Components:** Custom Tailwind components (`.glass`, `.btn-primary`, etc.)
+- **Animations:** Hover effects, gradient text, blur overlays
