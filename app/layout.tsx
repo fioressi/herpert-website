@@ -5,8 +5,8 @@ import "./globals.css";
 const inter = Inter({ subsets: ["latin"], variable: "--font-sans" });
 
 export const metadata: Metadata = {
-  title: "HERPERT — PDM & Email Management",
-  description: "Enterprise PDM system with intelligent email integration. Blitz email client + group-pdm backend.",
+  title: "HERPERT — ERP für Konstruktion & Fertigung",
+  description: "ERP-System mit integriertem PDM, SolidWorks-Anbindung, BOM, Beschaffung, Produktion und intelligentem Email-Client. Von der Konstruktion bis zur Fertigung.",
 };
 
 export default function RootLayout({
