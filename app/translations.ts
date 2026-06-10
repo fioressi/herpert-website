@@ -29,7 +29,12 @@ type Content = {
     points: string[];
     demoLabel: string;
   };
-  blitzDemo: { badge: string; title: string; desc: string };
+  blitzDemo: {
+    badge: string;
+    title: string;
+    desc: string;
+    views: { email: string; brett: string; kalender: string; tasks: string; orders: string; rudel: string };
+  };
   cta: { title: string; subtitle: string; demo: string; contact: string };
   footer: { tagline: string; imprint: string; privacy: string; contact: string };
 };
@@ -93,8 +98,9 @@ export const T: Record<Lang, Content> = {
     },
     blitzDemo: {
       badge: "INTERAKTIVE DEMO",
-      title: "Blitz live ausprobieren",
-      desc: "So sieht Email-Triage im PDM-Kontext aus. Klicken Sie die Buttons — löschen, gelesen, beantworten oder merken. Jede Mail trägt ihre Verknüpfungen zu Projekten, Bestellungen und Tasks direkt auf der Karte. Läuft hier mit Testdaten.",
+      title: "Das ganze System live ausprobieren",
+      desc: "Email-Triage, Kanban-Brett, Kalender, Tasks, Bestellungen und der Rudel-KI-Chat — wechseln Sie oben die Ansicht. Alles läuft hier mit Testdaten, klickbar und ohne Login.",
+      views: { email: "📧 Blitz", brett: "🗂️ Brett", kalender: "📅 Kalender", tasks: "📋 Tasks", orders: "🛒 Bestellungen", rudel: "🐺 Rudel" },
     },
     cta: {
       title: "Bereit für durchgängige Prozesse?",
@@ -168,8 +174,9 @@ export const T: Record<Lang, Content> = {
     },
     blitzDemo: {
       badge: "INTERACTIVE DEMO",
-      title: "Try Blitz live",
-      desc: "This is what email triage in PDM context looks like. Click the buttons — delete, read, reply or save. Every mail carries its links to projects, orders and tasks right on the card. Running here with test data.",
+      title: "Try the whole system live",
+      desc: "Email triage, kanban board, calendar, tasks, orders and the Rudel AI chat — switch the view above. Everything runs here on test data, clickable and without login.",
+      views: { email: "📧 Blitz", brett: "🗂️ Board", kalender: "📅 Calendar", tasks: "📋 Tasks", orders: "🛒 Orders", rudel: "🐺 Rudel" },
     },
     cta: {
       title: "Ready for seamless processes?",
@@ -243,8 +250,9 @@ export const T: Record<Lang, Content> = {
     },
     blitzDemo: {
       badge: "INTERAKTÍV DEMÓ",
-      title: "Próbálja ki a Blitz-et élőben",
-      desc: "Így néz ki az email-rendezés PDM-környezetben. Kattintson a gombokra — törlés, olvasott, válasz vagy mentés. Minden levél a kártyán hordozza a projektekhez, megrendelésekhez és feladatokhoz fűződő kapcsolatait. Itt tesztadatokkal fut.",
+      title: "Próbálja ki az egész rendszert élőben",
+      desc: "Email-rendezés, kanban-tábla, naptár, feladatok, megrendelések és a Rudel MI-chat — fent válthat nézetet. Minden tesztadatokkal fut, kattintható, bejelentkezés nélkül.",
+      views: { email: "📧 Blitz", brett: "🗂️ Tábla", kalender: "📅 Naptár", tasks: "📋 Feladatok", orders: "🛒 Megrendelések", rudel: "🐺 Rudel" },
     },
     cta: {
       title: "Készen áll az átfogó folyamatokra?",

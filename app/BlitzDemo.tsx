@@ -1,7 +1,67 @@
 "use client";
 
 import { useState } from "react";
-import type { Lang } from "./translations";
+import { T, type Lang } from "./translations";
+import { BrettView } from "./demo/BrettView";
+import { CalendarView } from "./demo/CalendarView";
+import { TasksView } from "./demo/TasksView";
+import { OrdersView } from "./demo/OrdersView";
+import { RudelView } from "./demo/RudelView";
+
+type View = "email" | "brett" | "kalender" | "tasks" | "orders" | "rudel";
+
+export function WorkspaceDemo({ lang }: { lang: Lang }) {
+  const [view, setView] = useState<View>("email");
+  const v = T[lang].blitzDemo.views;
+
+  const tabs: { key: View; label: string }[] = [
+    { key: "email", label: v.email },
+    { key: "brett", label: v.brett },
+    { key: "kalender", label: v.kalender },
+    { key: "tasks", label: v.tasks },
+    { key: "orders", label: v.orders },
+    { key: "rudel", label: v.rudel },
+  ];
+
+  return (
+    <div className="max-w-md mx-auto w-full">
+      {/* View switcher */}
+      <div className="flex flex-wrap gap-1.5 mb-3 justify-center">
+        {tabs.map((tb) => (
+          <button
+            key={tb.key}
+            onClick={() => setView(tb.key)}
+            className={`text-xs px-3 py-1.5 rounded-lg transition ${
+              view === tb.key
+                ? "bg-cyan-400 text-slate-950 font-semibold"
+                : "bg-slate-800/60 text-slate-400 hover:text-cyan-400"
+            }`}
+          >
+            {tb.label}
+          </button>
+        ))}
+      </div>
+
+      {view === "email" ? (
+        <BlitzDemo lang={lang} />
+      ) : (
+        <div className="glass bg-slate-950/60 overflow-hidden shadow-2xl">
+          <div className="flex items-center gap-2 px-4 py-3 border-b border-cyan-400/10 bg-slate-900/60">
+            <span className="text-cyan-400 font-bold">⚡ HERPERT</span>
+            <span className="text-[10px] px-1.5 py-0.5 rounded bg-cyan-400/10 text-cyan-400 font-mono">
+              DEMO
+            </span>
+          </div>
+          {view === "brett" && <BrettView lang={lang} />}
+          {view === "kalender" && <CalendarView lang={lang} />}
+          {view === "tasks" && <TasksView lang={lang} />}
+          {view === "orders" && <OrdersView lang={lang} />}
+          {view === "rudel" && <RudelView lang={lang} />}
+        </div>
+      )}
+    </div>
+  );
+}
 
 type Status = "inbox" | "read" | "reply" | "saved" | "deleted";
 

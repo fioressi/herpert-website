@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { T, LANGS, type Lang } from "./translations";
-import { BlitzDemo } from "./BlitzDemo";
+import { WorkspaceDemo } from "./BlitzDemo";
 
 export default function Home() {
   const [lang, setLang] = useState<Lang>("de");
@@ -98,7 +98,7 @@ export default function Home() {
             <h2 className="text-3xl md:text-4xl font-bold mb-4">{t.blitzDemo.title}</h2>
             <p className="text-slate-300 leading-relaxed">{t.blitzDemo.desc}</p>
           </div>
-          <BlitzDemo lang={lang} />
+          <WorkspaceDemo lang={lang} />
         </div>
       </section>
 
