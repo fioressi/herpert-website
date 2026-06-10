@@ -53,7 +53,7 @@ export function RudelView({ lang }: { lang: Lang }) {
   const convo = CONVO[lang];
 
   return (
-    <div className="flex flex-col h-[420px]">
+    <div className="flex flex-col h-[460px] max-w-3xl mx-auto w-full">
       {/* Participants bar */}
       <div className="flex items-center gap-2 px-3 py-2 border-b border-cyan-400/10 bg-slate-900/60">
         <span className="text-[11px] text-slate-400 mr-1">{PARTICIPANTS_LABEL[lang]}</span>

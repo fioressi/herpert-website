@@ -40,7 +40,7 @@ const RFQS: DemoRfq[] = [
 
 const STR: Record<Lang, {
   tabs: { po: string; rfq: string };
-  head: { order: string; supplier: string; total: string; status: string; part: string; suppliers: string; best: string };
+  head: { order: string; supplier: string; project: string; lines: string; total: string; status: string; part: string; suppliers: string; best: string };
   ostatus: Record<OStatus, string>;
   rstatus: Record<RStatus, string>;
   sumOpen: string;
@@ -50,7 +50,7 @@ const STR: Record<Lang, {
 }> = {
   de: {
     tabs: { po: "🛒 Bestellungen", rfq: "📨 Anfragen (RFQ)" },
-    head: { order: "Bestellung", supplier: "Lieferant", total: "Summe", status: "Status", part: "Teil", suppliers: "Lief.", best: "Bestes Angebot" },
+    head: { order: "Bestellung", supplier: "Lieferant", project: "Projekt", lines: "Pos.", total: "Summe", status: "Status", part: "Teil", suppliers: "Lief.", best: "Bestes Angebot" },
     ostatus: { open: "Offen", confirmed: "Bestätigt", delivered: "Geliefert" },
     rstatus: { draft: "Entwurf", sent: "Versendet", quoted: "Angebote da", awarded: "Vergeben" },
     sumOpen: "Offen gesamt",
@@ -60,7 +60,7 @@ const STR: Record<Lang, {
   },
   en: {
     tabs: { po: "🛒 Orders", rfq: "📨 Requests (RFQ)" },
-    head: { order: "Order", supplier: "Supplier", total: "Total", status: "Status", part: "Part", suppliers: "Sup.", best: "Best quote" },
+    head: { order: "Order", supplier: "Supplier", project: "Project", lines: "Lines", total: "Total", status: "Status", part: "Part", suppliers: "Sup.", best: "Best quote" },
     ostatus: { open: "Open", confirmed: "Confirmed", delivered: "Delivered" },
     rstatus: { draft: "Draft", sent: "Sent", quoted: "Quoted", awarded: "Awarded" },
     sumOpen: "Total open",
@@ -70,7 +70,7 @@ const STR: Record<Lang, {
   },
   hu: {
     tabs: { po: "🛒 Megrendelések", rfq: "📨 Ajánlatkérők (RFQ)" },
-    head: { order: "Megrendelés", supplier: "Beszállító", total: "Összeg", status: "Állapot", part: "Alkatrész", suppliers: "Besz.", best: "Legjobb ajánlat" },
+    head: { order: "Megrendelés", supplier: "Beszállító", project: "Projekt", lines: "Tétel", total: "Összeg", status: "Állapot", part: "Alkatrész", suppliers: "Besz.", best: "Legjobb ajánlat" },
     ostatus: { open: "Nyitott", confirmed: "Megerősítve", delivered: "Szállítva" },
     rstatus: { draft: "Vázlat", sent: "Elküldve", quoted: "Ajánlatok", awarded: "Odaítélve" },
     sumOpen: "Nyitott összesen",
@@ -131,26 +131,27 @@ export function OrdersView({ lang }: { lang: Lang }) {
             <Kpi value={s.currency(openTotal.toLocaleString(lang === "en" ? "en-US" : "de-DE"))} label={s.sumOpen} />
           </div>
           <div className="rounded-xl border border-cyan-400/10 overflow-hidden">
-            <table className="w-full text-xs">
+            <table className="w-full text-sm">
               <thead>
-                <tr className="bg-slate-900/60 text-slate-400">
-                  <th className="text-left px-2.5 py-2 font-medium">{s.head.order}</th>
-                  <th className="text-left px-2.5 py-2 font-medium">{s.head.supplier}</th>
-                  <th className="text-right px-2.5 py-2 font-medium">{s.head.total}</th>
-                  <th className="text-center px-2.5 py-2 font-medium">{s.head.status}</th>
+                <tr className="bg-slate-900/60 text-slate-400 text-xs">
+                  <th className="text-left px-4 py-2.5 font-medium">{s.head.order}</th>
+                  <th className="text-left px-4 py-2.5 font-medium">{s.head.supplier}</th>
+                  <th className="text-left px-4 py-2.5 font-medium hidden sm:table-cell">{s.head.project}</th>
+                  <th className="text-center px-4 py-2.5 font-medium hidden sm:table-cell">{s.head.lines}</th>
+                  <th className="text-right px-4 py-2.5 font-medium">{s.head.total}</th>
+                  <th className="text-center px-4 py-2.5 font-medium">{s.head.status}</th>
                 </tr>
               </thead>
               <tbody>
                 {ORDERS.map((o) => (
                   <tr key={o.id} className="border-t border-cyan-400/5 hover:bg-slate-800/40 transition">
-                    <td className="px-2.5 py-2.5">
-                      <div className="text-cyan-400 font-mono">{o.id}</div>
-                      <div className="text-[10px] text-slate-500">{o.project} · {o.lines}×</div>
-                    </td>
-                    <td className="px-2.5 py-2.5 text-slate-300">{o.supplier}</td>
-                    <td className="px-2.5 py-2.5 text-right text-slate-200 font-medium">{s.currency(o.total)}</td>
-                    <td className="px-2.5 py-2.5 text-center">
-                      <span className={`text-[10px] px-2 py-0.5 rounded-full ${O_COLOR[o.status]}`}>
+                    <td className="px-4 py-3 text-cyan-400 font-mono">{o.id}</td>
+                    <td className="px-4 py-3 text-slate-300">{o.supplier}</td>
+                    <td className="px-4 py-3 text-slate-400 hidden sm:table-cell">{o.project}</td>
+                    <td className="px-4 py-3 text-center text-slate-400 hidden sm:table-cell">{o.lines}</td>
+                    <td className="px-4 py-3 text-right text-slate-100 font-medium">{s.currency(o.total)}</td>
+                    <td className="px-4 py-3 text-center">
+                      <span className={`text-[11px] px-2.5 py-0.5 rounded-full ${O_COLOR[o.status]}`}>
                         {s.ostatus[o.status]}
                       </span>
                     </td>
@@ -168,28 +169,30 @@ export function OrdersView({ lang }: { lang: Lang }) {
             <Kpi value={String(RFQS.filter((r) => r.status === "awarded").length)} label={s.rstatus.awarded} />
           </div>
           <div className="rounded-xl border border-cyan-400/10 overflow-hidden">
-            <table className="w-full text-xs">
+            <table className="w-full text-sm">
               <thead>
-                <tr className="bg-slate-900/60 text-slate-400">
-                  <th className="text-left px-2.5 py-2 font-medium">{s.head.part}</th>
-                  <th className="text-center px-2.5 py-2 font-medium">{s.head.suppliers}</th>
-                  <th className="text-right px-2.5 py-2 font-medium">{s.head.best}</th>
-                  <th className="text-center px-2.5 py-2 font-medium">{s.head.status}</th>
+                <tr className="bg-slate-900/60 text-slate-400 text-xs">
+                  <th className="text-left px-4 py-2.5 font-medium">RFQ</th>
+                  <th className="text-left px-4 py-2.5 font-medium">{s.head.part}</th>
+                  <th className="text-center px-4 py-2.5 font-medium">{s.head.suppliers}</th>
+                  <th className="text-right px-4 py-2.5 font-medium">{s.head.best}</th>
+                  <th className="text-center px-4 py-2.5 font-medium">{s.head.status}</th>
                 </tr>
               </thead>
               <tbody>
                 {RFQS.map((r) => (
                   <tr key={r.id} className="border-t border-cyan-400/5 hover:bg-slate-800/40 transition">
-                    <td className="px-2.5 py-2.5">
+                    <td className="px-4 py-3 text-cyan-400 font-mono text-xs whitespace-nowrap">{r.id}</td>
+                    <td className="px-4 py-3">
                       <div className="text-slate-200">{r.part}</div>
-                      <div className="text-[10px] text-cyan-400/70 font-mono">{r.partId}</div>
+                      <div className="text-[11px] text-cyan-400/70 font-mono">{r.partId}</div>
                     </td>
-                    <td className="px-2.5 py-2.5 text-center text-slate-300">{r.suppliers || "—"}</td>
-                    <td className="px-2.5 py-2.5 text-right text-slate-200 font-medium">
+                    <td className="px-4 py-3 text-center text-slate-300">{r.suppliers || "—"}</td>
+                    <td className="px-4 py-3 text-right text-slate-100 font-medium">
                       {r.bestQuote ? s.currency(r.bestQuote) : s.noQuote}
                     </td>
-                    <td className="px-2.5 py-2.5 text-center">
-                      <span className={`text-[10px] px-2 py-0.5 rounded-full ${R_COLOR[r.status]}`}>
+                    <td className="px-4 py-3 text-center">
+                      <span className={`text-[11px] px-2.5 py-0.5 rounded-full ${R_COLOR[r.status]}`}>
                         {s.rstatus[r.status]}
                       </span>
                     </td>

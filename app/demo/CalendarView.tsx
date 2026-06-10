@@ -47,8 +47,8 @@ export function CalendarView({ lang }: { lang: Lang }) {
   const today = 10;
 
   return (
-    <div className="p-3">
-      <div className="text-center text-sm font-semibold text-cyan-400 mb-3">{MONTH[lang]}</div>
+    <div className="p-4 max-w-2xl mx-auto">
+      <div className="text-center text-base font-semibold text-cyan-400 mb-3">{MONTH[lang]}</div>
       <div className="grid grid-cols-7 gap-1 mb-1">
         {WEEKDAYS[lang].map((d) => (
           <div key={d} className="text-center text-[10px] text-slate-500 font-mono py-1">

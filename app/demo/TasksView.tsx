@@ -70,7 +70,7 @@ export function TasksView({ lang }: { lang: Lang }) {
   const [openId, setOpenId] = useState<string | null>("45");
 
   return (
-    <div className="p-3 space-y-2">
+    <div className="p-4 space-y-2 max-w-3xl mx-auto">
       {TASKS.map((task) => {
         const isOpen = openId === task.id;
         return (

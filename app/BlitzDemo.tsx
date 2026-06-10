@@ -23,15 +23,18 @@ export function WorkspaceDemo({ lang }: { lang: Lang }) {
     { key: "rudel", label: v.rudel },
   ];
 
+  // Email view keeps a phone-like narrow frame; all other views go full width.
+  const narrow = view === "email";
+
   return (
-    <div className="max-w-md mx-auto w-full">
+    <div className="w-full">
       {/* View switcher */}
-      <div className="flex flex-wrap gap-1.5 mb-3 justify-center">
+      <div className="flex flex-wrap gap-1.5 mb-4 justify-center">
         {tabs.map((tb) => (
           <button
             key={tb.key}
             onClick={() => setView(tb.key)}
-            className={`text-xs px-3 py-1.5 rounded-lg transition ${
+            className={`text-sm px-4 py-2 rounded-lg transition ${
               view === tb.key
                 ? "bg-cyan-400 text-slate-950 font-semibold"
                 : "bg-slate-800/60 text-slate-400 hover:text-cyan-400"
@@ -42,14 +45,19 @@ export function WorkspaceDemo({ lang }: { lang: Lang }) {
         ))}
       </div>
 
-      {view === "email" ? (
-        <BlitzDemo lang={lang} />
+      {narrow ? (
+        <div className="max-w-md mx-auto w-full">
+          <BlitzDemo lang={lang} />
+        </div>
       ) : (
-        <div className="glass bg-slate-950/60 overflow-hidden shadow-2xl">
-          <div className="flex items-center gap-2 px-4 py-3 border-b border-cyan-400/10 bg-slate-900/60">
+        <div className="glass bg-slate-950/60 overflow-hidden shadow-2xl w-full">
+          <div className="flex items-center gap-2 px-5 py-3.5 border-b border-cyan-400/10 bg-slate-900/60">
             <span className="text-cyan-400 font-bold">⚡ HERPERT</span>
             <span className="text-[10px] px-1.5 py-0.5 rounded bg-cyan-400/10 text-cyan-400 font-mono">
               DEMO
+            </span>
+            <span className="ml-auto text-xs text-slate-500">
+              {tabs.find((tb) => tb.key === view)?.label}
             </span>
           </div>
           {view === "brett" && <BrettView lang={lang} />}

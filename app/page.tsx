@@ -105,16 +105,14 @@ export default function Home() {
 
       {/* Blitz Live Demo */}
       <section id="demo" className="py-20 px-6 max-w-6xl mx-auto w-full">
-        <div className="grid md:grid-cols-2 gap-10 items-center">
-          <div>
-            <div className="inline-block mb-4 px-3 py-1 rounded-full bg-cyan-400/10 text-cyan-400 text-xs font-mono">
-              {t.blitzDemo.badge}
-            </div>
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">{t.blitzDemo.title}</h2>
-            <p className="text-slate-300 leading-relaxed">{t.blitzDemo.desc}</p>
+        <div className="text-center mb-10 max-w-2xl mx-auto">
+          <div className="inline-block mb-4 px-3 py-1 rounded-full bg-cyan-400/10 text-cyan-400 text-xs font-mono">
+            {t.blitzDemo.badge}
           </div>
-          <WorkspaceDemo lang={lang} />
+          <h2 className="text-3xl md:text-4xl font-bold mb-4">{t.blitzDemo.title}</h2>
+          <p className="text-slate-300 leading-relaxed">{t.blitzDemo.desc}</p>
         </div>
+        <WorkspaceDemo lang={lang} />
       </section>
 
       {/* Übersetzung — Mega Feature */}
