@@ -220,7 +220,7 @@ const STR: Record<Lang, {
   },
 };
 
-export function BlitzDemo({ lang }: { lang: Lang }) {
+export function BlitzDemo({ lang, wide = false }: { lang: Lang; wide?: boolean }) {
   const [emails, setEmails] = useState<DemoEmail[]>(INITIAL_EMAILS);
   const [tab, setTab] = useState<Status>("inbox");
   const s = STR[lang];
@@ -244,7 +244,7 @@ export function BlitzDemo({ lang }: { lang: Lang }) {
   ];
 
   return (
-    <div className="glass bg-slate-950/60 overflow-hidden max-w-md mx-auto w-full shadow-2xl">
+    <div className={`glass bg-slate-950/60 overflow-hidden w-full shadow-2xl ${wide ? "" : "max-w-md mx-auto"}`}>
       {/* App bar */}
       <div className="flex items-center justify-between px-4 py-3 border-b border-cyan-400/10 bg-slate-900/60">
         <div className="flex items-center gap-2">

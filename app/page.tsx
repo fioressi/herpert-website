@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
 import { T, LANGS, type Lang } from "./translations";
 import { WorkspaceDemo } from "./BlitzDemo";
 import { PdmAnatomy } from "./PdmAnatomy";
@@ -54,8 +55,8 @@ export default function Home() {
             {t.hero.subtitle}
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <button className="btn-primary px-8 py-4 text-lg">{t.hero.demo}</button>
-            <button className="btn-secondary px-8 py-4 text-lg">{t.hero.more}</button>
+            <Link href="/app" className="btn-primary px-8 py-4 text-lg inline-block">{t.hero.demo}</Link>
+            <a href="#demo" className="btn-secondary px-8 py-4 text-lg inline-block">{t.hero.more}</a>
           </div>
         </div>
       </section>
