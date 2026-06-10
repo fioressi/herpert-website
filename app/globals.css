@@ -1,0 +1,44 @@
+@import "tailwindcss";
+
+@theme {
+  --color-slate-950: #0f0f1a;
+  --color-slate-900: #1a1a2e;
+  --color-slate-800: #2d2d44;
+  --color-slate-700: #3f3f5a;
+  --color-slate-600: #52526f;
+  --color-cyan-400: #66d9ef;
+  --color-cyan-500: #5cc5e0;
+  --color-cyan-300: #7ee5f5;
+}
+
+@layer base {
+  :root {
+    color-scheme: dark;
+  }
+
+  body {
+    @apply bg-slate-950 text-slate-100 font-sans;
+  }
+
+  html {
+    @apply scroll-smooth;
+  }
+}
+
+@layer components {
+  .glass {
+    @apply bg-slate-900/50 backdrop-blur-md border border-cyan-400/10 rounded-2xl;
+  }
+
+  .glass-hover {
+    @apply bg-slate-900/50 backdrop-blur-md border border-cyan-400/10 rounded-2xl transition-all duration-300 hover:border-cyan-400/30 hover:bg-slate-900/70;
+  }
+
+  .btn-primary {
+    @apply px-6 py-3 bg-cyan-400 text-slate-950 rounded-lg font-semibold transition-all hover:bg-cyan-500 active:scale-95 cursor-pointer;
+  }
+
+  .btn-secondary {
+    @apply px-6 py-3 border border-cyan-400/50 text-cyan-400 rounded-lg font-semibold transition-all hover:border-cyan-400 hover:bg-cyan-400/10 cursor-pointer;
+  }
+}
