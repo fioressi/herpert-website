@@ -29,6 +29,7 @@ type Content = {
     points: string[];
     demoLabel: string;
   };
+  blitzDemo: { badge: string; title: string; desc: string };
   cta: { title: string; subtitle: string; demo: string; contact: string };
   footer: { tagline: string; imprint: string; privacy: string; contact: string };
 };
@@ -89,6 +90,11 @@ export const T: Record<Lang, Content> = {
         "Keine Doppelpflege, keine Copy-Paste-Übersetzung",
       ],
       demoLabel: "Live-Übersetzung",
+    },
+    blitzDemo: {
+      badge: "INTERAKTIVE DEMO",
+      title: "Blitz live ausprobieren",
+      desc: "So sieht Email-Triage im PDM-Kontext aus. Klicken Sie die Buttons — löschen, gelesen, beantworten oder merken. Jede Mail trägt ihre Verknüpfungen zu Projekten, Bestellungen und Tasks direkt auf der Karte. Läuft hier mit Testdaten.",
     },
     cta: {
       title: "Bereit für durchgängige Prozesse?",
@@ -160,6 +166,11 @@ export const T: Record<Lang, Content> = {
       ],
       demoLabel: "Live translation",
     },
+    blitzDemo: {
+      badge: "INTERACTIVE DEMO",
+      title: "Try Blitz live",
+      desc: "This is what email triage in PDM context looks like. Click the buttons — delete, read, reply or save. Every mail carries its links to projects, orders and tasks right on the card. Running here with test data.",
+    },
     cta: {
       title: "Ready for seamless processes?",
       subtitle: "See how HERPERT connects design and manufacturing.",
@@ -229,6 +240,11 @@ export const T: Record<Lang, Content> = {
         "Nincs kettős adatbevitel, nincs másol-beilleszt fordítás",
       ],
       demoLabel: "Élő fordítás",
+    },
+    blitzDemo: {
+      badge: "INTERAKTÍV DEMÓ",
+      title: "Próbálja ki a Blitz-et élőben",
+      desc: "Így néz ki az email-rendezés PDM-környezetben. Kattintson a gombokra — törlés, olvasott, válasz vagy mentés. Minden levél a kártyán hordozza a projektekhez, megrendelésekhez és feladatokhoz fűződő kapcsolatait. Itt tesztadatokkal fut.",
     },
     cta: {
       title: "Készen áll az átfogó folyamatokra?",

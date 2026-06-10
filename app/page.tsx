@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { T, LANGS, type Lang } from "./translations";
+import { BlitzDemo } from "./BlitzDemo";
 
 export default function Home() {
   const [lang, setLang] = useState<Lang>("de");
@@ -16,6 +17,7 @@ export default function Home() {
           <div className="hidden lg:flex gap-8 text-sm">
             <a href="#workflow" className="hover:text-cyan-400 transition">{t.nav.workflow}</a>
             <a href="#module" className="hover:text-cyan-400 transition">{t.nav.modules}</a>
+            <a href="#demo" className="hover:text-cyan-400 transition">Demo</a>
             <a href="#solidworks" className="hover:text-cyan-400 transition">{t.nav.solidworks}</a>
             <a href="#uebersetzung" className="hover:text-cyan-400 transition">{t.nav.translation}</a>
             <a href="#contact" className="hover:text-cyan-400 transition">{t.nav.contact}</a>
@@ -83,6 +85,20 @@ export default function Home() {
               <p className="text-slate-400 group-hover:text-slate-300 transition">{feature.desc}</p>
             </div>
           ))}
+        </div>
+      </section>
+
+      {/* Blitz Live Demo */}
+      <section id="demo" className="py-20 px-6 max-w-6xl mx-auto w-full">
+        <div className="grid md:grid-cols-2 gap-10 items-center">
+          <div>
+            <div className="inline-block mb-4 px-3 py-1 rounded-full bg-cyan-400/10 text-cyan-400 text-xs font-mono">
+              {t.blitzDemo.badge}
+            </div>
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">{t.blitzDemo.title}</h2>
+            <p className="text-slate-300 leading-relaxed">{t.blitzDemo.desc}</p>
+          </div>
+          <BlitzDemo lang={lang} />
         </div>
       </section>
 
