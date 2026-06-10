@@ -1,0 +1,9 @@
+{
+  "navigationFallback": {
+    "rewrite": "/index.html",
+    "exclude": ["/_next/*", "*.{css,js,png,svg,ico,woff,woff2}"]
+  },
+  "globalHeaders": {
+    "cache-control": "public, max-age=3600"
+  }
+}
