@@ -48,6 +48,18 @@ type Content = {
     desc: string;
     views: { email: string; brett: string; kalender: string; tasks: string; orders: string; rudel: string };
   };
+  pricing: {
+    badge: string;
+    title: string;
+    subtitle: string;
+    price: string;
+    per: string;
+    seat: string;
+    includedTitle: string;
+    included: string[];
+    note: string;
+    cta: string;
+  };
   cta: { title: string; subtitle: string; demo: string; contact: string };
   footer: { tagline: string; imprint: string; privacy: string; contact: string };
 };
@@ -147,6 +159,24 @@ export const T: Record<Lang, Content> = {
       title: "Das ganze System live ausprobieren",
       desc: "Email-Triage, Kanban-Brett, Kalender, Tasks, Bestellungen und der Rudel-KI-Chat — wechseln Sie oben die Ansicht. Alles läuft hier mit Testdaten, klickbar und ohne Login.",
       views: { email: "📧 Blitz", brett: "🗂️ Brett", kalender: "📅 Kalender", tasks: "📋 Tasks", orders: "🛒 Bestellungen", rudel: "🐺 Rudel" },
+    },
+    pricing: {
+      badge: "PREIS",
+      title: "Ein Preis, alles inklusive",
+      subtitle: "Keine Module zum Nachkaufen, keine Setup-Gebühr. Sie zahlen pro aktivem Arbeitsplatz.",
+      price: "50 €",
+      per: "pro Monat",
+      seat: "pro Arbeitsplatz",
+      includedTitle: "Im Preis enthalten",
+      included: [
+        "Alle Module — PDM, BOM, Beschaffung, Produktion, CRM",
+        "Blitz Email-Client + Rudel-KI-Assistent",
+        "SolidWorks-Add-in ohne Aufpreis",
+        "Automatische Übersetzung DE / EN / HU",
+        "Cloud-Hosting, Updates und Support",
+      ],
+      note: "Monatlich kündbar · zzgl. MwSt.",
+      cta: "Jetzt starten",
     },
     cta: {
       title: "Bereit für durchgängige Prozesse?",
@@ -257,6 +287,24 @@ export const T: Record<Lang, Content> = {
       desc: "Email triage, kanban board, calendar, tasks, orders and the Rudel AI chat — switch the view above. Everything runs here on test data, clickable and without login.",
       views: { email: "📧 Blitz", brett: "🗂️ Board", kalender: "📅 Calendar", tasks: "📋 Tasks", orders: "🛒 Orders", rudel: "🐺 Rudel" },
     },
+    pricing: {
+      badge: "PRICING",
+      title: "One price, everything included",
+      subtitle: "No modules to buy on top, no setup fee. You pay per active seat.",
+      price: "€50",
+      per: "per month",
+      seat: "per seat",
+      includedTitle: "Included in the price",
+      included: [
+        "All modules — PDM, BOM, procurement, production, CRM",
+        "Blitz email client + Rudel AI assistant",
+        "SolidWorks add-in at no extra cost",
+        "Automatic translation DE / EN / HU",
+        "Cloud hosting, updates and support",
+      ],
+      note: "Cancel monthly · plus VAT",
+      cta: "Get started",
+    },
     cta: {
       title: "Ready for seamless processes?",
       subtitle: "See how HERPERT connects design and manufacturing.",
@@ -365,6 +413,24 @@ export const T: Record<Lang, Content> = {
       title: "Próbálja ki az egész rendszert élőben",
       desc: "Email-rendezés, kanban-tábla, naptár, feladatok, megrendelések és a Rudel MI-chat — fent válthat nézetet. Minden tesztadatokkal fut, kattintható, bejelentkezés nélkül.",
       views: { email: "📧 Blitz", brett: "🗂️ Tábla", kalender: "📅 Naptár", tasks: "📋 Feladatok", orders: "🛒 Megrendelések", rudel: "🐺 Rudel" },
+    },
+    pricing: {
+      badge: "ÁRAZÁS",
+      title: "Egy ár, minden benne",
+      subtitle: "Nincs külön megvásárolható modul, nincs telepítési díj. Aktív munkahelyenként fizet.",
+      price: "50 €",
+      per: "havonta",
+      seat: "munkahelyenként",
+      includedTitle: "Az árban benne van",
+      included: [
+        "Minden modul — PDM, BOM, beszerzés, gyártás, CRM",
+        "Blitz email-kliens + Rudel MI-asszisztens",
+        "SolidWorks bővítmény felár nélkül",
+        "Automatikus fordítás DE / EN / HU",
+        "Felhő-tárhely, frissítések és támogatás",
+      ],
+      note: "Havonta felmondható · ÁFA nélkül",
+      cta: "Kezdés",
     },
     cta: {
       title: "Készen áll az átfogó folyamatokra?",

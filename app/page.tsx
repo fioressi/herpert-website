@@ -21,6 +21,7 @@ export default function Home() {
             <a href="#pdm" className="hover:text-cyan-400 transition">{t.nav.pdm}</a>
             <a href="#demo" className="hover:text-cyan-400 transition">Demo</a>
             <a href="#solidworks" className="hover:text-cyan-400 transition">{t.nav.solidworks}</a>
+            <a href="#preis" className="hover:text-cyan-400 transition">{t.pricing.badge}</a>
             <a href="#uebersetzung" className="hover:text-cyan-400 transition">{t.nav.translation}</a>
             <a href="#contact" className="hover:text-cyan-400 transition">{t.nav.contact}</a>
           </div>
@@ -170,6 +171,47 @@ export default function Home() {
               ))}
             </div>
           </div>
+        </div>
+      </section>
+
+      {/* Preis */}
+      <section id="preis" className="py-20 px-6 max-w-3xl mx-auto w-full">
+        <div className="text-center mb-10">
+          <div className="inline-block mb-4 px-3 py-1 rounded-full bg-cyan-400/10 text-cyan-400 text-xs font-mono">
+            {t.pricing.badge}
+          </div>
+          <h2 className="text-3xl md:text-4xl font-bold mb-4">{t.pricing.title}</h2>
+          <p className="text-slate-300 max-w-xl mx-auto">{t.pricing.subtitle}</p>
+        </div>
+
+        <div className="glass p-8 md:p-10 relative overflow-hidden">
+          <div className="absolute -top-16 -right-16 w-48 h-48 bg-cyan-400/10 rounded-full blur-3xl" />
+          <div className="text-center mb-8 relative">
+            <div className="flex items-end justify-center gap-2">
+              <span className="text-6xl font-bold text-cyan-400">{t.pricing.price}</span>
+              <div className="text-left mb-2">
+                <div className="text-slate-300 text-sm">{t.pricing.per}</div>
+                <div className="text-slate-400 text-sm">{t.pricing.seat}</div>
+              </div>
+            </div>
+          </div>
+
+          <div className="border-t border-cyan-400/10 pt-6 mb-6">
+            <div className="text-xs font-semibold text-slate-400 uppercase tracking-wide mb-4">
+              {t.pricing.includedTitle}
+            </div>
+            <ul className="space-y-3">
+              {t.pricing.included.map((item, i) => (
+                <li key={i} className="flex gap-3 text-slate-200">
+                  <span className="text-cyan-400 shrink-0">✓</span>
+                  {item}
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <button className="btn-primary w-full py-4 text-lg mb-3">{t.pricing.cta}</button>
+          <div className="text-center text-xs text-slate-500">{t.pricing.note}</div>
         </div>
       </section>
 
