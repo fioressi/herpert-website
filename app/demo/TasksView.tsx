@@ -25,7 +25,7 @@ const TASKS: DemoTask[] = [
     },
     assignee: "Müller",
     status: "open",
-    project: "GPH-001",
+    project: "H26001",
   },
   {
     id: "46",
@@ -37,19 +37,19 @@ const TASKS: DemoTask[] = [
     },
     assignee: "Nagy",
     status: "progress",
-    project: "GPH-001",
+    project: "H26001",
   },
   {
     id: "47",
     code: "#47",
     title: {
-      de: "QC-Entscheid Welle GP-2026-04",
-      en: "QC decision shaft GP-2026-04",
-      hu: "QC döntés tengely GP-2026-04",
+      de: "QC-Entscheid Welle H26001",
+      en: "QC decision shaft H26001",
+      hu: "QC döntés tengely H26001",
     },
     assignee: "Berger",
     status: "done",
-    project: "GPH-002",
+    project: "H26002",
   },
 ];
 

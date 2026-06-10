@@ -10,8 +10,8 @@ const LANE_T: Record<Lang, { projects: string; tasks: string; orders: string; in
 
 const CARDS: Record<Lang, { lane: keyof (typeof LANE_T)["de"]; title: string; sub: string; color: string }[]> = {
   de: [
-    { lane: "projects", title: "GPH-001", sub: "Honey Badger", color: "#3b82f6" },
-    { lane: "projects", title: "GPH-002", sub: "Greifarm V3", color: "#3b82f6" },
+    { lane: "projects", title: "H26001", sub: "Greifeinheit V3", color: "#3b82f6" },
+    { lane: "projects", title: "H26002", sub: "Modul A", color: "#3b82f6" },
     { lane: "tasks", title: "#45 RFQ Welle", sub: "offen · Müller", color: "#f59e0b" },
     { lane: "tasks", title: "#46 Inspektion", sub: "in Arbeit · Nagy", color: "#f59e0b" },
     { lane: "orders", title: "PO-2026-001", sub: "Schmidt GmbH · 4.200 €", color: "#10b981" },
@@ -20,8 +20,8 @@ const CARDS: Record<Lang, { lane: keyof (typeof LANE_T)["de"]; title: string; su
     { lane: "emails", title: "Angebot Welle", sub: "Max Muster", color: "#66d9ef" },
   ],
   en: [
-    { lane: "projects", title: "GPH-001", sub: "Honey Badger", color: "#3b82f6" },
-    { lane: "projects", title: "GPH-002", sub: "Gripper V3", color: "#3b82f6" },
+    { lane: "projects", title: "H26001", sub: "Greifeinheit V3", color: "#3b82f6" },
+    { lane: "projects", title: "H26002", sub: "Modul A", color: "#3b82f6" },
     { lane: "tasks", title: "#45 RFQ shaft", sub: "open · Müller", color: "#f59e0b" },
     { lane: "tasks", title: "#46 Inspection", sub: "in progress · Nagy", color: "#f59e0b" },
     { lane: "orders", title: "PO-2026-001", sub: "Schmidt GmbH · €4,200", color: "#10b981" },
@@ -30,8 +30,8 @@ const CARDS: Record<Lang, { lane: keyof (typeof LANE_T)["de"]; title: string; su
     { lane: "emails", title: "Quote shaft", sub: "Max Muster", color: "#66d9ef" },
   ],
   hu: [
-    { lane: "projects", title: "GPH-001", sub: "Honey Badger", color: "#3b82f6" },
-    { lane: "projects", title: "GPH-002", sub: "Megfogó V3", color: "#3b82f6" },
+    { lane: "projects", title: "H26001", sub: "Greifeinheit V3", color: "#3b82f6" },
+    { lane: "projects", title: "H26002", sub: "Modul A", color: "#3b82f6" },
     { lane: "tasks", title: "#45 RFQ tengely", sub: "nyitott · Müller", color: "#f59e0b" },
     { lane: "tasks", title: "#46 Ellenőrzés", sub: "folyamatban · Nagy", color: "#f59e0b" },
     { lane: "orders", title: "PO-2026-001", sub: "Schmidt GmbH · 4 200 €", color: "#10b981" },

@@ -102,9 +102,9 @@ const INITIAL_EMAILS: DemoEmail[] = [
     from: "Max Muster",
     fromEmail: "max.muster@lieferant.at",
     subject: {
-      de: "Angebot Welle GP-2026-04",
-      en: "Quote shaft GP-2026-04",
-      hu: "Árajánlat tengely GP-2026-04",
+      de: "Angebot Welle H26001",
+      en: "Quote shaft H26001",
+      hu: "Árajánlat tengely H26001",
     },
     preview: {
       de: "Anbei unser Angebot für die Welle. Termin können wir einhalten…",
@@ -113,7 +113,7 @@ const INITIAL_EMAILS: DemoEmail[] = [
     },
     time: "10:34",
     hasAttachment: true,
-    links: [{ label: "GPH-001", type: "project" }],
+    links: [{ label: "H26001", type: "project" }],
     status: "inbox",
   },
   {
@@ -152,7 +152,7 @@ const INITIAL_EMAILS: DemoEmail[] = [
     time: "08:55",
     hasAttachment: true,
     links: [
-      { label: "GPH-002", type: "project" },
+      { label: "H26002", type: "project" },
       { label: "#45 RFQ", type: "task" },
     ],
     status: "inbox",

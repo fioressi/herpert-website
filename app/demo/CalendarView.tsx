@@ -17,21 +17,21 @@ const EVENTS: Record<Lang, Record<number, { label: string; color: string }>> = {
     9: { label: "Liefertermin", color: "#10b981" },
     12: { label: "RFQ Deadline", color: "#f59e0b" },
     18: { label: "Inspektion", color: "#8b5cf6" },
-    25: { label: "Abnahme GPH-001", color: "#ec4899" },
+    25: { label: "Abnahme H26001", color: "#ec4899" },
   },
   en: {
     4: { label: "Review P2", color: "#3b82f6" },
     9: { label: "Delivery", color: "#10b981" },
     12: { label: "RFQ deadline", color: "#f59e0b" },
     18: { label: "Inspection", color: "#8b5cf6" },
-    25: { label: "Acceptance GPH-001", color: "#ec4899" },
+    25: { label: "Acceptance H26001", color: "#ec4899" },
   },
   hu: {
     4: { label: "Review P2", color: "#3b82f6" },
     9: { label: "Szállítás", color: "#10b981" },
     12: { label: "RFQ határidő", color: "#f59e0b" },
     18: { label: "Ellenőrzés", color: "#8b5cf6" },
-    25: { label: "Átvétel GPH-001", color: "#ec4899" },
+    25: { label: "Átvétel H26001", color: "#ec4899" },
   },
 };
 

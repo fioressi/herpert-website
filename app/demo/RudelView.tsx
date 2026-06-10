@@ -15,21 +15,21 @@ const ROLE_META: Record<Role, { label: string; color: string; avatar: string }> 
 const CONVO: Record<Lang, { role: Role; text: string }[]> = {
   de: [
     { role: "meister", text: "Was ist der Status zu PO-2026-002?" },
-    { role: "gregor", text: "PO-2026-002 (Welt AG, 12.850 €) ist offen — 7 Positionen, noch nicht bestätigt. Liefertermin laut Projekt GPH-001 ist der 9. Juni." },
+    { role: "gregor", text: "PO-2026-002 (Welt AG, 12.850 €) ist offen — 7 Positionen, noch nicht bestätigt. Liefertermin laut Projekt H26001 ist der 9. Juni." },
     { role: "igor", text: "In der letzten Mail von Welt AG steht eine Rückfrage zur Toleranz bei Position 4. Soll ich einen Antwortentwurf erstellen?" },
     { role: "meister", text: "Ja, und übersetz die Antwort auf Ungarisch für die Fertigung." },
     { role: "rosetta", text: "Erledigt — Antwort auf DE verfasst und nach HU übersetzt. Beide Versionen hängen am Task #46." },
   ],
   en: [
     { role: "meister", text: "What's the status on PO-2026-002?" },
-    { role: "gregor", text: "PO-2026-002 (Welt AG, €12,850) is open — 7 line items, not yet confirmed. Delivery date per project GPH-001 is June 9." },
+    { role: "gregor", text: "PO-2026-002 (Welt AG, €12,850) is open — 7 line items, not yet confirmed. Delivery date per project H26001 is June 9." },
     { role: "igor", text: "The last email from Welt AG has a query about the tolerance on line 4. Shall I draft a reply?" },
     { role: "meister", text: "Yes, and translate the reply to Hungarian for production." },
     { role: "rosetta", text: "Done — reply drafted in DE and translated to HU. Both versions attached to task #46." },
   ],
   hu: [
     { role: "meister", text: "Mi a státusza a PO-2026-002-nek?" },
-    { role: "gregor", text: "A PO-2026-002 (Welt AG, 12 850 €) nyitott — 7 tétel, még nincs megerősítve. A szállítási határidő a GPH-001 projekt szerint június 9." },
+    { role: "gregor", text: "A PO-2026-002 (Welt AG, 12 850 €) nyitott — 7 tétel, még nincs megerősítve. A szállítási határidő a H26001 projekt szerint június 9." },
     { role: "igor", text: "A Welt AG utolsó emailjében van egy kérdés a 4. tétel tűréséről. Készítsek választervezetet?" },
     { role: "meister", text: "Igen, és fordítsd le a választ magyarra a gyártásnak." },
     { role: "rosetta", text: "Kész — válasz DE-n megfogalmazva és HU-ra fordítva. Mindkét verzió a #46 feladathoz csatolva." },

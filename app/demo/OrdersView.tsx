@@ -25,16 +25,16 @@ interface DemoRfq {
 }
 
 const ORDERS: DemoOrder[] = [
-  { id: "PO-2026-001", supplier: "Schmidt GmbH", project: "GPH-001", total: "4.200", status: "confirmed", lines: 3 },
-  { id: "PO-2026-002", supplier: "Welt AG", project: "GPH-001", total: "12.850", status: "open", lines: 7 },
-  { id: "PO-2026-003", supplier: "Lieferant AT", project: "GPH-002", total: "980", status: "delivered", lines: 2 },
-  { id: "PO-2026-004", supplier: "Nagy Kft.", project: "GPH-002", total: "5.640", status: "open", lines: 4 },
+  { id: "PO-2026-001", supplier: "Schmidt GmbH", project: "H26001", total: "4.200", status: "confirmed", lines: 3 },
+  { id: "PO-2026-002", supplier: "Welt AG", project: "H26001", total: "12.850", status: "open", lines: 7 },
+  { id: "PO-2026-003", supplier: "Lieferant AT", project: "H26002", total: "980", status: "delivered", lines: 2 },
+  { id: "PO-2026-004", supplier: "Nagy Kft.", project: "H26002", total: "5.640", status: "open", lines: 4 },
 ];
 
 const RFQS: DemoRfq[] = [
-  { id: "RFQ-2026-011", part: "Welle GP-2026-04", partId: "H-7206-13282-90", suppliers: 3, bestQuote: "1.180", status: "quoted" },
-  { id: "RFQ-2026-012", part: "Lagerbock", partId: "H-7201-13290-70", suppliers: 4, bestQuote: "640", status: "awarded" },
-  { id: "RFQ-2026-013", part: "Greifarm V3", partId: "H-7050-13301-80", suppliers: 2, bestQuote: null, status: "sent" },
+  { id: "RFQ-2026-011", part: "Welle", partId: "H-7205-13282-90", suppliers: 3, bestQuote: "1.180", status: "quoted" },
+  { id: "RFQ-2026-012", part: "Lagerbock", partId: "H-7205-13290-80", suppliers: 4, bestQuote: "640", status: "awarded" },
+  { id: "RFQ-2026-013", part: "Greifeinheit V3", partId: "H-7014-13301-70", suppliers: 2, bestQuote: null, status: "sent" },
   { id: "RFQ-2026-014", part: "Deckblech", partId: "H-7206-13312-50", suppliers: 0, bestQuote: null, status: "draft" },
 ];
 
