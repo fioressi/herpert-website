@@ -619,8 +619,8 @@ function FipsView() {
       <ShellHero
         kicker="Field Interactive Project Space"
         title="Blitz Fips"
-        sub="Interne Sicht auf einen Room (= Arbeitspaket): Kanban, Termine, Mails, Files und Chat an einem Ort — die Meute ist im Chat zuschaltbar."
-        badge="ROOM"
+        sub="Reibungsfreier Collab-Space über Firmengrenzen hinweg: jeder Room (= Arbeitspaket) bündelt Kanban, Termine, Mails, Files und Chat (KI-Meute zuschaltbar). Partner ohne eigenes ERP docken einfach an — andockbar an jedes ERP, ersetzt Slack & Monday."
+        badge="COLLAB"
       />
       <div className="flex flex-wrap gap-2 mb-4">
         {FIPS_ROOMS.map((r) => (
@@ -683,9 +683,15 @@ function FipsView() {
       )}
       {sub === "Chat" && (
         <div className="max-w-2xl">
+          <div className="flex items-center gap-2 mb-3 text-[11px] text-slate-500">
+            <span className="px-2 py-0.5 rounded-full bg-slate-800/60 border border-slate-700">👤 Alex Berger · intern</span>
+            <span className="px-2 py-0.5 rounded-full bg-slate-800/60 border border-slate-700">🏭 Marek Kovács · Fertigung</span>
+            <span className="px-2 py-0.5 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-300">🌐 Präzitec Kft. · extern (ohne ERP angedockt)</span>
+          </div>
           <div className="rounded-xl border border-cyan-400/10 bg-slate-900/40 p-4 space-y-3">
             <ChatBubble who="Alex Berger" me text="Steht die Montage von P26-014 für KW 25?" />
             <ChatBubble who="Marek Kovács" text="Bohrbild ist angepasst, Gehäuse entgraten läuft. KW 25 hält." />
+            <ChatBubble who="🌐 Präzitec Kft. (extern)" text="Halteblech links geht heute raus, Tracking folgt. Toleranz H7 ist berücksichtigt." />
             <ChatBubble who="🐺 Meute · Igor" ai text="Offen ist nur das Prüfprotokoll (NEW). Slot Do 18.06. 14:00 würde passen — soll ich den Termin anlegen?" />
           </div>
           <div className="flex items-center gap-2 mt-3">
