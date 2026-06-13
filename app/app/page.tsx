@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
 
 /* ──────────────────────────────────────────────────────────────────────────
@@ -16,6 +16,20 @@ export default function AppDemo() {
   const [ws, setWs] = useState<WS>("post");
   const [herpertView, setHerpertView] = useState<"menu" | "dashboard">("menu");
   const [meuteOpen, setMeuteOpen] = useState(false);
+
+  // Deep-Links: /app/?view=fips&meute=1 — für direkte Vorschau / Screenshots.
+  useEffect(() => {
+    try {
+      const p = new URLSearchParams(window.location.search);
+      const v = p.get("view") as WS | null;
+      const allowed: WS[] = ["post", "termine", "brett", "fips", "paul", "klaus", "zwutschgerl", "herpert"];
+      if (v && allowed.includes(v)) {
+        setWs(v);
+        if (v === "herpert" && p.get("dashboard") === "1") setHerpertView("dashboard");
+      }
+      if (p.get("meute") === "1") setMeuteOpen(true);
+    } catch { /* ignore */ }
+  }, []);
 
   return (
     <div className="fixed inset-0 flex flex-col text-slate-100 overflow-hidden" style={{ background: NAVY }}>
@@ -760,7 +774,7 @@ function PaulView() {
         sub="Zusatzmodul für die 12-stufige NPI: jede Neuentwicklung läuft gated durch alle zwölf Stufen — Paul steuert die Tore und sammelt an jedem Gate die nötigen Freigaben."
         badge="NPI · 12 STUFEN"
       />
-      <div className="rounded-2xl border border-cyan-400/10 bg-slate-900/40 p-5 mb-6 max-w-5xl">
+      <div className="rounded-2xl border border-cyan-400/10 bg-slate-900/40 p-5 mb-6 max-w-6xl">
         <div className="text-xs text-slate-500 mb-4 tracking-wide font-semibold">NEW PRODUCT INTRODUCTION · 12 GATES</div>
         <div className="flex items-stretch gap-3 overflow-x-auto pb-1">
           {NPI_PHASES.map((p) => (
@@ -770,7 +784,7 @@ function PaulView() {
                 {p.gates.map((g) => {
                   n += 1;
                   return (
-                    <div key={g} className="w-28 rounded-lg px-2 py-2 border text-center" style={{ borderColor: `${p.c}55`, background: `${p.c}14` }}>
+                    <div key={g} className="w-[84px] rounded-lg px-1.5 py-2 border text-center" style={{ borderColor: `${p.c}55`, background: `${p.c}14` }}>
                       <div className="text-[10px] font-mono" style={{ color: p.c }}>G{String(n).padStart(2, "0")}</div>
                       <div className="text-[11px] text-slate-300 mt-0.5 leading-tight">{g}</div>
                     </div>

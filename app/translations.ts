@@ -28,6 +28,7 @@ type Content = {
     steps: { step: string; title: string; desc: string; icon: string }[];
   };
   suite: { badge: string; title: string; subtitle: string; pillars: { title: string; tag: string; desc: string }[] };
+  gallery: { badge: string; title: string; subtitle: string; cta: string; shots: { label: string; desc: string }[] };
   modules: { title: string; items: { title: string; desc: string }[] };
   solidworks: {
     badge: string;
@@ -130,6 +131,22 @@ export const T: Record<Lang, Content> = {
         { title: "✅ Paul", tag: "NPI", desc: "Zusatzmodul für die 12-stufige NPI: jede Neuentwicklung läuft gated durch alle zwölf Stufen — mit den richtigen Freigaben an jedem Tor." },
         { title: "📦 Herpert", tag: "PDM + ERP", desc: "Das massive PDM mit SolidWorks-Anbindung und das Herpert-ERP, das Beschaffung und Produktion reibungslos löst — von der PartId bis zur Bestellung." },
         { title: "🧮 Klaus", tag: "BUCHHALTUNG", desc: "Die Buchhaltung, die mit viel KI die Aufgaben des Tagesgeschäfts übernimmt — Rechnungen, Fälligkeiten und Zahlungen, weitgehend von selbst." },
+      ],
+    },
+    gallery: {
+      badge: "EINBLICKE",
+      title: "Sieh dir die echte Oberfläche an",
+      subtitle: "Screenshots aus der Live-Demo — jedes Modul ist nur einen Klick entfernt.",
+      cta: "Live-Demo öffnen",
+      shots: [
+        { label: "Blitz Post", desc: "Posteingang-Triage: gelesen, beantworten, merken — in einem Klick." },
+        { label: "Blitz Brett", desc: "Alles auf einem Board: Projekte, Pakete, Mails, Tasks, Bestellungen." },
+        { label: "Blitz Fips", desc: "Collab-Room über Firmengrenzen — externe Lieferanten docken an." },
+        { label: "Paul", desc: "Die 12-stufige NPI mit Freigaben an jedem Gate." },
+        { label: "Klaus", desc: "KI-Buchhaltung: Rechnungen, Fälligkeiten, Zahlungsstatus." },
+        { label: "Zwutschgerln", desc: "Private Klebezettel — frei oder an Mail, Task, Brett-Karte." },
+        { label: "Herpert", desc: "Auftrags-Dashboard: KPIs, RFQs, Bestellungen, Lager." },
+        { label: "🐺 Meute", desc: "KI-Council: Lagebild, Risiken, nächste Schritte — von jeder Seite." },
       ],
     },
     modules: {
@@ -276,6 +293,22 @@ export const T: Record<Lang, Content> = {
         { title: "🧮 Klaus", tag: "ACCOUNTING", desc: "The accounting that uses heavy AI to take over the day-to-day — invoices, due dates and payments, largely on its own." },
       ],
     },
+    gallery: {
+      badge: "A LOOK INSIDE",
+      title: "See the real interface",
+      subtitle: "Screenshots from the live demo — every module just one click away.",
+      cta: "Open live demo",
+      shots: [
+        { label: "Blitz Post", desc: "Inbox triage: read, reply, save — in a single click." },
+        { label: "Blitz Brett", desc: "Everything on one board: projects, packages, mails, tasks, orders." },
+        { label: "Blitz Fips", desc: "A collab room across company borders — external suppliers dock in." },
+        { label: "Paul", desc: "The 12-stage NPI with approvals at every gate." },
+        { label: "Klaus", desc: "AI accounting: invoices, due dates, payment status." },
+        { label: "Zwutschgerln", desc: "Private sticky notes — free or pinned to mail, task, board card." },
+        { label: "Herpert", desc: "Order dashboard: KPIs, RFQs, purchase orders, inventory." },
+        { label: "🐺 Meute", desc: "AI council: status, risks, next steps — from any page." },
+      ],
+    },
     modules: {
       title: "Modules",
       items: [
@@ -418,6 +451,22 @@ export const T: Record<Lang, Content> = {
         { title: "✅ Paul", tag: "NPI", desc: "Kiegészítő modul a 12 lépcsős NPI-hez: minden új fejlesztés kapuzottan halad végig mind a tizenkét lépcsőn — a megfelelő jóváhagyásokkal minden kapunál." },
         { title: "📦 Herpert", tag: "PDM + ERP", desc: "A masszív PDM SolidWorks-kapcsolattal és a Herpert ERP, amely súrlódásmentesen oldja meg a beszerzést és a gyártást — a PartId-tól a megrendelésig." },
         { title: "🧮 Klaus", tag: "KÖNYVELÉS", desc: "A könyvelés, amely sok MI-vel veszi át a napi feladatokat — számlák, határidők és fizetések, jórészt magától." },
+      ],
+    },
+    gallery: {
+      badge: "BETEKINTÉS",
+      title: "Nézd meg a valódi felületet",
+      subtitle: "Képernyőképek az élő demóból — minden modul csak egy kattintásra.",
+      cta: "Élő demó megnyitása",
+      shots: [
+        { label: "Blitz Post", desc: "Beérkezett-triázs: olvasott, válasz, mentés — egyetlen kattintással." },
+        { label: "Blitz Brett", desc: "Minden egy táblán: projektek, csomagok, emailek, feladatok, megrendelések." },
+        { label: "Blitz Fips", desc: "Együttműködési room céghatárokon át — külső beszállítók csatlakoznak." },
+        { label: "Paul", desc: "A 12 lépcsős NPI jóváhagyásokkal minden kapunál." },
+        { label: "Klaus", desc: "MI-könyvelés: számlák, határidők, fizetési állapot." },
+        { label: "Zwutschgerln", desc: "Privát cetlik — szabadon vagy emailhez, feladathoz, tábla-kártyához tűzve." },
+        { label: "Herpert", desc: "Megrendelési irányítópult: KPI-k, RFQ-k, megrendelések, raktár." },
+        { label: "🐺 Meute", desc: "MI-tanács: helyzetkép, kockázatok, következő lépések — bármely oldalról." },
       ],
     },
     modules: {

@@ -6,6 +6,17 @@ import { T, LANGS, type Lang } from "./translations";
 import { WorkspaceDemo } from "./BlitzDemo";
 import { PdmAnatomy } from "./PdmAnatomy";
 
+const SHOTS: { file: string; view: string }[] = [
+  { file: "post", view: "post" },
+  { file: "brett", view: "brett" },
+  { file: "fips", view: "fips" },
+  { file: "paul", view: "paul" },
+  { file: "klaus", view: "klaus" },
+  { file: "zwutschgerl", view: "zwutschgerl" },
+  { file: "herpert", view: "herpert&dashboard=1" },
+  { file: "meute", view: "brett&meute=1" },
+];
+
 export default function Home() {
   const [lang, setLang] = useState<Lang>("de");
   const t = T[lang];
@@ -18,6 +29,7 @@ export default function Home() {
           <div className="text-2xl font-bold text-cyan-400 shrink-0">⚡ HERPERT</div>
           <div className="hidden lg:flex gap-8 text-sm">
             <a href="#suite" className="hover:text-cyan-400 transition">Blitz</a>
+            <a href="#einblicke" className="hover:text-cyan-400 transition">Einblicke</a>
             <a href="#workflow" className="hover:text-cyan-400 transition">{t.nav.workflow}</a>
             <a href="#module" className="hover:text-cyan-400 transition">{t.nav.modules}</a>
             <a href="#pdm" className="hover:text-cyan-400 transition">{t.nav.pdm}</a>
@@ -87,6 +99,43 @@ export default function Home() {
         </div>
         <div className="text-center mt-10">
           <Link href="/app" className="btn-primary px-8 py-3 inline-block">{t.hero.demo}</Link>
+        </div>
+      </section>
+
+      {/* Einblicke — Screenshot-Galerie aus der Live-Demo */}
+      <section id="einblicke" className="py-20 px-6 max-w-6xl mx-auto w-full">
+        <div className="text-center mb-12 max-w-2xl mx-auto">
+          <div className="inline-block mb-4 px-3 py-1 rounded-full bg-cyan-400/10 text-cyan-400 text-xs font-mono">
+            {t.gallery.badge}
+          </div>
+          <h2 className="text-3xl md:text-4xl font-bold mb-4">{t.gallery.title}</h2>
+          <p className="text-slate-300 leading-relaxed">{t.gallery.subtitle}</p>
+        </div>
+        <div className="grid gap-6 sm:grid-cols-2">
+          {SHOTS.map((s, i) => (
+            <Link
+              key={s.file}
+              href={`/app?view=${s.view}`}
+              className="group block rounded-2xl overflow-hidden border border-cyan-400/10 bg-slate-900/40 hover:border-cyan-400/40 transition"
+            >
+              <div className="relative overflow-hidden">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src={`/shots/${s.file}.png`}
+                  alt={t.gallery.shots[i].label}
+                  loading="lazy"
+                  className="w-full h-auto block group-hover:scale-[1.02] transition duration-300"
+                />
+                <span className="absolute top-3 right-3 text-[10px] font-semibold px-2 py-1 rounded-full bg-slate-950/70 text-cyan-300 border border-cyan-400/20 opacity-0 group-hover:opacity-100 transition">
+                  {t.gallery.cta} ↗
+                </span>
+              </div>
+              <div className="p-4">
+                <div className="font-semibold text-slate-100 group-hover:text-cyan-400 transition">{t.gallery.shots[i].label}</div>
+                <div className="text-sm text-slate-400 mt-1">{t.gallery.shots[i].desc}</div>
+              </div>
+            </Link>
+          ))}
         </div>
       </section>
 
