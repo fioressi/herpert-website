@@ -737,38 +737,46 @@ function ChatBubble({ who, text, me, ai }: { who: string; text: string; me?: boo
 }
 
 /* ── Paul (Project Approval & Lifecycle Management) ─────────────────────── */
-const PAUL_STAGES = [
-  { k: "COTS", l: "Zukauf", c: "#64748b" },
-  { k: "DOV", l: "Design-Vorgabe", c: "#3b82f6" },
-  { k: "NPD", l: "Entwicklung", c: "#8b5cf6" },
-  { k: "NPI", l: "Industrialisierung", c: "#5bc8ea" },
-  { k: "Ramp-Up", l: "Serienanlauf", c: "#10b981" },
+// 12-stufige NPI (New Product Introduction) — gated, in vier Phasen gruppiert.
+const NPI_PHASES = [
+  { phase: "Konzept", c: "#3b82f6", gates: ["Bedarf / Idee", "Machbarkeit", "Lastenheft"] },
+  { phase: "Entwicklung", c: "#8b5cf6", gates: ["Konzept-Design", "Detail-Design", "Design-Review"] },
+  { phase: "Industrialisierung", c: "#5bc8ea", gates: ["Prototyp", "Verifikation", "Validierung"] },
+  { phase: "Serienanlauf", c: "#10b981", gates: ["Industrialisierung", "Nullserie", "Serienfreigabe"] },
 ];
 const PAUL_APPROVALS = [
-  { obj: "H-7206-14021-90 Halteblech links", from: "DOV", to: "NPD", who: "Lena Hofer", state: "WARTET" },
-  { obj: "P26-014 Förderband V2", from: "NPD", to: "NPI", who: "Alex Berger", state: "WARTET" },
-  { obj: "H-7206-14088-92 Seitenteil", from: "NPI", to: "Ramp-Up", who: "Marek Kovács", state: "FREIGEGEBEN" },
+  { obj: "H-7206-14021-90 Halteblech links", gate: "Stufe 6 · Design-Review", who: "Lena Hofer", state: "WARTET" },
+  { obj: "P26-014 Förderband V2", gate: "Stufe 9 · Validierung", who: "Alex Berger", state: "WARTET" },
+  { obj: "H-7206-14088-92 Seitenteil", gate: "Stufe 11 · Nullserie", who: "Marek Kovács", state: "FREIGEGEBEN" },
 ];
 
 function PaulView() {
+  let n = 0;
   return (
     <div className="h-full overflow-y-auto p-6">
       <ShellHero
         kicker="Project Approval & Lifecycle Management"
         title="Paul"
-        sub="Projekt-Freigaben & Lifecycle. Jedes Objekt durchläuft denselben Reifegrad-Pfad — Paul steuert die Übergänge und sammelt die nötigen Freigaben."
-        badge="LIFECYCLE"
+        sub="Zusatzmodul für die 12-stufige NPI: jede Neuentwicklung läuft gated durch alle zwölf Stufen — Paul steuert die Tore und sammelt an jedem Gate die nötigen Freigaben."
+        badge="NPI · 12 STUFEN"
       />
       <div className="rounded-2xl border border-cyan-400/10 bg-slate-900/40 p-5 mb-6 max-w-5xl">
-        <div className="text-xs text-slate-500 mb-4 tracking-wide font-semibold">COME TO LIFE · PRODUKT-LIFECYCLE</div>
-        <div className="flex items-center gap-1 overflow-x-auto pb-1">
-          {PAUL_STAGES.map((s, i) => (
-            <div key={s.k} className="flex items-center gap-1 shrink-0">
-              <div className="rounded-xl px-4 py-3 text-center border" style={{ borderColor: `${s.c}66`, background: `${s.c}1a` }}>
-                <div className="text-sm font-bold" style={{ color: s.c }}>{s.k}</div>
-                <div className="text-[11px] text-slate-400 mt-0.5">{s.l}</div>
+        <div className="text-xs text-slate-500 mb-4 tracking-wide font-semibold">NEW PRODUCT INTRODUCTION · 12 GATES</div>
+        <div className="flex items-stretch gap-3 overflow-x-auto pb-1">
+          {NPI_PHASES.map((p) => (
+            <div key={p.phase} className="shrink-0">
+              <div className="text-[11px] font-semibold mb-2" style={{ color: p.c }}>{p.phase}</div>
+              <div className="flex gap-1.5">
+                {p.gates.map((g) => {
+                  n += 1;
+                  return (
+                    <div key={g} className="w-28 rounded-lg px-2 py-2 border text-center" style={{ borderColor: `${p.c}55`, background: `${p.c}14` }}>
+                      <div className="text-[10px] font-mono" style={{ color: p.c }}>G{String(n).padStart(2, "0")}</div>
+                      <div className="text-[11px] text-slate-300 mt-0.5 leading-tight">{g}</div>
+                    </div>
+                  );
+                })}
               </div>
-              {i < PAUL_STAGES.length - 1 && <span className="text-slate-600">→</span>}
             </div>
           ))}
         </div>
@@ -783,9 +791,7 @@ function PaulView() {
                 <div className="text-[11px] text-slate-500 mt-0.5">👤 {a.who}</div>
               </div>
               <div className="flex items-center gap-1.5 text-[11px] text-slate-400 shrink-0">
-                <span className="px-1.5 py-0.5 rounded bg-slate-700/50">{a.from}</span>
-                <span>→</span>
-                <span className="px-1.5 py-0.5 rounded bg-slate-700/50">{a.to}</span>
+                <span className="px-2 py-0.5 rounded bg-slate-700/50">{a.gate}</span>
               </div>
               <span className={`text-[10px] px-2 py-0.5 rounded font-semibold shrink-0 ${a.state === "FREIGEGEBEN" ? "bg-emerald-500/20 text-emerald-300" : "bg-amber-500/20 text-amber-300"}`}>{a.state}</span>
             </div>

@@ -27,6 +27,7 @@ type Content = {
     subtitle: string;
     steps: { step: string; title: string; desc: string; icon: string }[];
   };
+  suite: { badge: string; title: string; subtitle: string; pillars: { title: string; tag: string; desc: string }[] };
   modules: { title: string; items: { title: string; desc: string }[] };
   solidworks: {
     badge: string;
@@ -119,6 +120,18 @@ export const T: Record<Lang, Content> = {
         { step: "5", title: "Produktion", desc: "Fertigungsaufträge, Material-Reservierung", icon: "🏭" },
       ],
     },
+    suite: {
+      badge: "DIE BLITZ-SUITE",
+      title: "Eine Suite, die mitdenkt",
+      subtitle: "Blitz bändigt die Info-Flut und führt Projekte von der Idee bis zur Serie — PDM, ERP, Collaboration und Buchhaltung greifen nahtlos ineinander.",
+      pillars: [
+        { title: "⚡ Blitz Post · Termin · Brett", tag: "ORGANISATION", desc: "Email, Kalender und das Brett lösen Info-Flut und Organisation auf innovative Weise — alles Wichtige an einem Ort, nichts geht unter." },
+        { title: "🛰️ + Blitz Fips", tag: "PROJEKTE", desc: "Zusammen mit Post, Termin und Brett wickelst du Projekte vollständig ab — firmenübergreifend und reibungsfrei. Partner docken ohne eigenes ERP an." },
+        { title: "✅ Paul", tag: "NPI", desc: "Zusatzmodul für die 12-stufige NPI: jede Neuentwicklung läuft gated durch alle zwölf Stufen — mit den richtigen Freigaben an jedem Tor." },
+        { title: "📦 Herpert", tag: "PDM + ERP", desc: "Das massive PDM mit SolidWorks-Anbindung und das Herpert-ERP, das Beschaffung und Produktion reibungslos löst — von der PartId bis zur Bestellung." },
+        { title: "🧮 Klaus", tag: "BUCHHALTUNG", desc: "Die Buchhaltung, die mit viel KI die Aufgaben des Tagesgeschäfts übernimmt — Rechnungen, Fälligkeiten und Zahlungen, weitgehend von selbst." },
+      ],
+    },
     modules: {
       title: "Module",
       items: [
@@ -130,8 +143,8 @@ export const T: Record<Lang, Content> = {
         { title: "👥 CRM", desc: "Unternehmen und Kontakte, Lieferanten und Kunden, Firmenkürzel und Projektzuordnung." },
         { title: "⚡ Blitz Email", desc: "PDM-integrierter Email-Client für Microsoft 365. Emails mit Projekten, Bestellungen und Tasks verknüpfen, KI-Unterstützung via Igor." },
         { title: "🛰️ Blitz Fips", desc: "Field Interactive Project Space — ein reibungsfreier Collab-Space, der die Hürden zwischen Firmen überwindet. Jeder Room bündelt Kanban, Termine, Mails, Files und Chat (mit KI-Meute); Partner ohne eigenes ERP docken einfach an. Andockbar an jedes ERP — ersetzt Slack & Monday." },
-        { title: "✅ Paul", desc: "Project Approval & Lifecycle Management — steuert die Reifegrad-Übergänge (COTS → DOV → NPD → NPI → Ramp-Up) und sammelt die nötigen Freigaben." },
-        { title: "🧮 Klaus", desc: "Buchhaltung: Rechnungen, Fälligkeiten und Zahlungsstatus, direkt aus Bestellungen und Belegen gespeist." },
+        { title: "✅ Paul", desc: "Project Approval & Lifecycle Management als Zusatzmodul für die 12-stufige NPI — führt jede Neuentwicklung gated durch alle zwölf Stufen und sammelt an jedem Tor die nötigen Freigaben." },
+        { title: "🧮 Klaus", desc: "Die Buchhaltung mit viel KI: erledigt die Aufgaben des Tagesgeschäfts — Rechnungen, Fälligkeiten und Zahlungsstatus, direkt aus Bestellungen und Belegen gespeist." },
         { title: "🐺 Meute & Zwutschgerln", desc: "KI-Council (Igor, BrainB/C/G, Gregor) von jeder Seite zuschaltbar, plus private Klebezettel an Mails, Tasks und Brett-Karten." },
       ],
     },
@@ -251,6 +264,18 @@ export const T: Record<Lang, Content> = {
         { step: "5", title: "Production", desc: "Production orders, material reservations", icon: "🏭" },
       ],
     },
+    suite: {
+      badge: "THE BLITZ SUITE",
+      title: "A suite that thinks along",
+      subtitle: "Blitz tames the information flood and runs projects from idea to series production — PDM, ERP, collaboration and accounting mesh together seamlessly.",
+      pillars: [
+        { title: "⚡ Blitz Post · Termin · Brett", tag: "ORGANISATION", desc: "Email, calendar and the board tame information overload and organisation in an innovative way — everything that matters in one place, nothing slips through." },
+        { title: "🛰️ + Blitz Fips", tag: "PROJECTS", desc: "Together with Post, Termin and Brett you run projects end to end — across company borders and friction-free. Partners dock in with no ERP of their own." },
+        { title: "✅ Paul", tag: "NPI", desc: "Add-on module for the 12-stage NPI: every new development runs gated through all twelve stages — with the right approvals at each gate." },
+        { title: "📦 Herpert", tag: "PDM + ERP", desc: "The massive PDM with SolidWorks integration and the Herpert ERP that solves procurement and production friction-free — from PartId to purchase order." },
+        { title: "🧮 Klaus", tag: "ACCOUNTING", desc: "The accounting that uses heavy AI to take over the day-to-day — invoices, due dates and payments, largely on its own." },
+      ],
+    },
     modules: {
       title: "Modules",
       items: [
@@ -262,8 +287,8 @@ export const T: Record<Lang, Content> = {
         { title: "👥 CRM", desc: "Companies and contacts, suppliers and customers, company codes and project assignment." },
         { title: "⚡ Blitz Email", desc: "PDM-integrated email client for Microsoft 365. Link emails to projects, orders and tasks, AI assistance via Igor." },
         { title: "🛰️ Blitz Fips", desc: "Field Interactive Project Space — a friction-free collaboration space that overcomes the barriers between companies. Every room bundles Kanban, calendar, mails, files and chat (with the AI pack); partners with no ERP of their own simply dock in. Pluggable into any ERP — replaces Slack & Monday." },
-        { title: "✅ Paul", desc: "Project Approval & Lifecycle Management — drives the maturity transitions (COTS → DOV → NPD → NPI → Ramp-Up) and collects the required approvals." },
-        { title: "🧮 Klaus", desc: "Accounting: invoices, due dates and payment status, fed straight from orders and documents." },
+        { title: "✅ Paul", desc: "Project Approval & Lifecycle Management as an add-on for the 12-stage NPI — drives every new development gated through all twelve stages and collects the required approvals at each gate." },
+        { title: "🧮 Klaus", desc: "Accounting with heavy AI: handles the day-to-day tasks — invoices, due dates and payment status, fed straight from orders and documents." },
         { title: "🐺 Meute & Zwutschgerln", desc: "AI council (Igor, BrainB/C/G, Gregor) switchable from any page, plus private sticky notes pinned to mails, tasks and board cards." },
       ],
     },
@@ -383,6 +408,18 @@ export const T: Record<Lang, Content> = {
         { step: "5", title: "Gyártás", desc: "Gyártási megrendelések, anyagfoglalás", icon: "🏭" },
       ],
     },
+    suite: {
+      badge: "A BLITZ-CSOMAG",
+      title: "Egy csomag, amely együtt gondolkodik",
+      subtitle: "A Blitz megfékezi az információáradatot, és az ötlettől a sorozatgyártásig viszi a projekteket — a PDM, ERP, együttműködés és könyvelés zökkenőmentesen kapcsolódik egymásba.",
+      pillars: [
+        { title: "⚡ Blitz Post · Termin · Brett", tag: "SZERVEZÉS", desc: "Az email, a naptár és a tábla innovatív módon fékezi meg az információáradatot és a szervezést — minden fontos egy helyen, semmi sem vész el." },
+        { title: "🛰️ + Blitz Fips", tag: "PROJEKTEK", desc: "A Post, Termin és Brett mellett a projekteket teljesen lebonyolítod — céghatárokon átívelően és súrlódásmentesen. A partnerek saját ERP nélkül csatlakoznak." },
+        { title: "✅ Paul", tag: "NPI", desc: "Kiegészítő modul a 12 lépcsős NPI-hez: minden új fejlesztés kapuzottan halad végig mind a tizenkét lépcsőn — a megfelelő jóváhagyásokkal minden kapunál." },
+        { title: "📦 Herpert", tag: "PDM + ERP", desc: "A masszív PDM SolidWorks-kapcsolattal és a Herpert ERP, amely súrlódásmentesen oldja meg a beszerzést és a gyártást — a PartId-tól a megrendelésig." },
+        { title: "🧮 Klaus", tag: "KÖNYVELÉS", desc: "A könyvelés, amely sok MI-vel veszi át a napi feladatokat — számlák, határidők és fizetések, jórészt magától." },
+      ],
+    },
     modules: {
       title: "Modulok",
       items: [
@@ -394,8 +431,8 @@ export const T: Record<Lang, Content> = {
         { title: "👥 CRM", desc: "Cégek és kapcsolattartók, beszállítók és vevők, cégkódok és projekt-hozzárendelés." },
         { title: "⚡ Blitz Email", desc: "PDM-integrált email-kliens Microsoft 365-höz. Emailek összekapcsolása projektekkel, megrendelésekkel és feladatokkal, MI-támogatás az Igor révén." },
         { title: "🛰️ Blitz Fips", desc: "Field Interactive Project Space — súrlódásmentes együttműködési tér, amely lebontja a cégek közötti akadályokat. Minden room egyesíti a Kanbant, naptárt, emaileket, fájlokat és chatet (MI-falkával); a saját ERP nélküli partnerek egyszerűen csatlakoznak. Bármely ERP-hez illeszthető — kiváltja a Slacket és a Monday-t." },
-        { title: "✅ Paul", desc: "Project Approval & Lifecycle Management — vezérli az érettségi átmeneteket (COTS → DOV → NPD → NPI → Ramp-Up) és összegyűjti a szükséges jóváhagyásokat." },
-        { title: "🧮 Klaus", desc: "Könyvelés: számlák, határidők és fizetési állapot, közvetlenül a megrendelésekből és bizonylatokból táplálva." },
+        { title: "✅ Paul", desc: "Project Approval & Lifecycle Management kiegészítő modulként a 12 lépcsős NPI-hez — minden új fejlesztést kapuzottan visz végig mind a tizenkét lépcsőn, és minden kapunál összegyűjti a szükséges jóváhagyásokat." },
+        { title: "🧮 Klaus", desc: "Könyvelés sok MI-vel: ellátja a napi feladatokat — számlák, határidők és fizetési állapot, közvetlenül a megrendelésekből és bizonylatokból táplálva." },
         { title: "🐺 Meute & Zwutschgerln", desc: "MI-tanács (Igor, BrainB/C/G, Gregor) bármely oldalról bekapcsolható, plusz privát cetlik emailekhez, feladatokhoz és tábla-kártyákhoz tűzve." },
       ],
     },

@@ -17,6 +17,7 @@ export default function Home() {
         <nav className="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center gap-4">
           <div className="text-2xl font-bold text-cyan-400 shrink-0">⚡ HERPERT</div>
           <div className="hidden lg:flex gap-8 text-sm">
+            <a href="#suite" className="hover:text-cyan-400 transition">Blitz</a>
             <a href="#workflow" className="hover:text-cyan-400 transition">{t.nav.workflow}</a>
             <a href="#module" className="hover:text-cyan-400 transition">{t.nav.modules}</a>
             <a href="#pdm" className="hover:text-cyan-400 transition">{t.nav.pdm}</a>
@@ -58,6 +59,34 @@ export default function Home() {
             <Link href="/app" className="btn-primary px-8 py-4 text-lg inline-block">{t.hero.demo}</Link>
             <a href="#demo" className="btn-secondary px-8 py-4 text-lg inline-block">{t.hero.more}</a>
           </div>
+        </div>
+      </section>
+
+      {/* Blitz-Suite — Säulen */}
+      <section id="suite" className="py-20 px-6 max-w-6xl mx-auto w-full">
+        <div className="text-center mb-12 max-w-2xl mx-auto">
+          <div className="inline-block mb-4 px-3 py-1 rounded-full bg-cyan-400/10 text-cyan-400 text-xs font-mono">
+            {t.suite.badge}
+          </div>
+          <h2 className="text-3xl md:text-4xl font-bold mb-4">{t.suite.title}</h2>
+          <p className="text-slate-300 leading-relaxed">{t.suite.subtitle}</p>
+        </div>
+        <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+          {t.suite.pillars.map((p, i) => (
+            <div
+              key={i}
+              className={`glass-hover p-6 group flex flex-col ${i === 0 ? "lg:col-span-2" : ""}`}
+            >
+              <div className="flex items-center gap-2 mb-3">
+                <h3 className="text-lg font-semibold group-hover:text-cyan-400 transition">{p.title}</h3>
+                <span className="ml-auto text-[10px] font-mono px-2 py-0.5 rounded-full bg-cyan-400/10 text-cyan-400 border border-cyan-400/20 tracking-wide">{p.tag}</span>
+              </div>
+              <p className="text-slate-400 group-hover:text-slate-300 transition leading-relaxed">{p.desc}</p>
+            </div>
+          ))}
+        </div>
+        <div className="text-center mt-10">
+          <Link href="/app" className="btn-primary px-8 py-3 inline-block">{t.hero.demo}</Link>
         </div>
       </section>
 
