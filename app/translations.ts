@@ -128,6 +128,10 @@ export const T: Record<Lang, Content> = {
         { title: "🏭 Produktion", desc: "Fertigungsaufträge, SOLL-Bedarf, Material-Reservierungen aus dem Bestand, Zuordnung von Stücklisten." },
         { title: "👥 CRM", desc: "Unternehmen und Kontakte, Lieferanten und Kunden, Firmenkürzel und Projektzuordnung." },
         { title: "⚡ Blitz Email", desc: "PDM-integrierter Email-Client für Microsoft 365. Emails mit Projekten, Bestellungen und Tasks verknüpfen, KI-Unterstützung via Igor." },
+        { title: "🛰️ Blitz Fips", desc: "Field Interactive Project Space: jeder Room (Arbeitspaket) bündelt Kanban, Termine, Mails, Files und Chat — mit zuschaltbarer KI-Meute." },
+        { title: "✅ Paul", desc: "Project Approval & Lifecycle Management — steuert die Reifegrad-Übergänge (COTS → DOV → NPD → NPI → Ramp-Up) und sammelt die nötigen Freigaben." },
+        { title: "🧮 Klaus", desc: "Buchhaltung: Rechnungen, Fälligkeiten und Zahlungsstatus, direkt aus Bestellungen und Belegen gespeist." },
+        { title: "🐺 Meute & Zwutschgerln", desc: "KI-Council (Igor, BrainB/C/G, Gregor) von jeder Seite zuschaltbar, plus private Klebezettel an Mails, Tasks und Brett-Karten." },
       ],
     },
     solidworks: {
@@ -255,6 +259,10 @@ export const T: Record<Lang, Content> = {
         { title: "🏭 Production", desc: "Production orders, target demand, material reservations from inventory, BOM assignment." },
         { title: "👥 CRM", desc: "Companies and contacts, suppliers and customers, company codes and project assignment." },
         { title: "⚡ Blitz Email", desc: "PDM-integrated email client for Microsoft 365. Link emails to projects, orders and tasks, AI assistance via Igor." },
+        { title: "🛰️ Blitz Fips", desc: "Field Interactive Project Space: every room (work package) bundles Kanban, calendar, mails, files and chat — with the AI pack switchable on." },
+        { title: "✅ Paul", desc: "Project Approval & Lifecycle Management — drives the maturity transitions (COTS → DOV → NPD → NPI → Ramp-Up) and collects the required approvals." },
+        { title: "🧮 Klaus", desc: "Accounting: invoices, due dates and payment status, fed straight from orders and documents." },
+        { title: "🐺 Meute & Zwutschgerln", desc: "AI council (Igor, BrainB/C/G, Gregor) switchable from any page, plus private sticky notes pinned to mails, tasks and board cards." },
       ],
     },
     solidworks: {
@@ -382,6 +390,10 @@ export const T: Record<Lang, Content> = {
         { title: "🏭 Gyártás", desc: "Gyártási megrendelések, tervezett igény, anyagfoglalások a készletből, darabjegyzék-hozzárendelés." },
         { title: "👥 CRM", desc: "Cégek és kapcsolattartók, beszállítók és vevők, cégkódok és projekt-hozzárendelés." },
         { title: "⚡ Blitz Email", desc: "PDM-integrált email-kliens Microsoft 365-höz. Emailek összekapcsolása projektekkel, megrendelésekkel és feladatokkal, MI-támogatás az Igor révén." },
+        { title: "🛰️ Blitz Fips", desc: "Field Interactive Project Space: minden room (munkacsomag) egyesíti a Kanbant, naptárt, emaileket, fájlokat és chatet — a bekapcsolható MI-falkával." },
+        { title: "✅ Paul", desc: "Project Approval & Lifecycle Management — vezérli az érettségi átmeneteket (COTS → DOV → NPD → NPI → Ramp-Up) és összegyűjti a szükséges jóváhagyásokat." },
+        { title: "🧮 Klaus", desc: "Könyvelés: számlák, határidők és fizetési állapot, közvetlenül a megrendelésekből és bizonylatokból táplálva." },
+        { title: "🐺 Meute & Zwutschgerln", desc: "MI-tanács (Igor, BrainB/C/G, Gregor) bármely oldalról bekapcsolható, plusz privát cetlik emailekhez, feladatokhoz és tábla-kártyákhoz tűzve." },
       ],
     },
     solidworks: {

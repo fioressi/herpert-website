@@ -8,38 +8,53 @@ import Link from "next/link";
    German-primary, navy theme, dummy data. No login, no backend.
    ────────────────────────────────────────────────────────────────────────── */
 
-type WS = "post" | "termine" | "brett" | "herpert";
+type WS = "post" | "termine" | "brett" | "fips" | "paul" | "klaus" | "zwutschgerl" | "herpert";
 
 const NAVY = "linear-gradient(180deg, #0e2138 0%, #0a1726 55%, #081320 100%)";
 
 export default function AppDemo() {
   const [ws, setWs] = useState<WS>("post");
   const [herpertView, setHerpertView] = useState<"menu" | "dashboard">("menu");
+  const [meuteOpen, setMeuteOpen] = useState(false);
 
   return (
     <div className="fixed inset-0 flex flex-col text-slate-100 overflow-hidden" style={{ background: NAVY }}>
-      <Banner ws={ws} setWs={(w) => { setWs(w); if (w === "herpert") setHerpertView("menu"); }} />
+      <Banner
+        ws={ws}
+        setWs={(w) => { setWs(w); if (w === "herpert") setHerpertView("menu"); }}
+        meuteOpen={meuteOpen}
+        onMeute={() => setMeuteOpen((o) => !o)}
+      />
 
       <div className="flex-1 overflow-hidden">
         {ws === "post" && <PostView />}
         {ws === "termine" && <TermineView />}
         {ws === "brett" && <BrettBoard />}
+        {ws === "fips" && <FipsView />}
+        {ws === "paul" && <PaulView />}
+        {ws === "klaus" && <KlausView />}
+        {ws === "zwutschgerl" && <ZwutschgerlnView />}
         {ws === "herpert" && (herpertView === "menu"
           ? <HerpertMenu onOpenDashboard={() => setHerpertView("dashboard")} />
           : <AuftragsDashboard onBack={() => setHerpertView("menu")} />)}
       </div>
 
       <Arbeitsablage />
+
+      {meuteOpen && <MeuteOverlay onClose={() => setMeuteOpen(false)} />}
     </div>
   );
 }
 
 /* ── Banner ─────────────────────────────────────────────────────────────── */
-function Banner({ ws, setWs }: { ws: WS; setWs: (w: WS) => void }) {
-  const tabs: { key: WS; label: string }[] = [
-    { key: "post", label: "Post" },
-    { key: "termine", label: "Termine" },
-    { key: "brett", label: "Brett" },
+function Banner({ ws, setWs, meuteOpen, onMeute }: { ws: WS; setWs: (w: WS) => void; meuteOpen: boolean; onMeute: () => void }) {
+  const tabs: { key: WS; label: string; title?: string }[] = [
+    { key: "post", label: "Blitz Post" },
+    { key: "termine", label: "Blitz Termin" },
+    { key: "brett", label: "Blitz Brett" },
+    { key: "fips", label: "Blitz Fips", title: "Field Interactive Project Space" },
+    { key: "paul", label: "Paul", title: "Project Approval & Lifecycle Management" },
+    { key: "klaus", label: "Klaus", title: "Buchhaltung" },
     { key: "herpert", label: "Herpert" },
   ];
   const showMail = ws === "post" || ws === "brett";
@@ -64,6 +79,28 @@ function Banner({ ws, setWs }: { ws: WS; setWs: (w: WS) => void }) {
               ✉ Neue E-Mail
             </button>
           )}
+          <button
+            onClick={() => setWs("zwutschgerl")}
+            title="Zwutschgerln — private Notizen & Mini-Tasks"
+            className={`px-3 py-1.5 rounded-lg border transition whitespace-nowrap ${
+              ws === "zwutschgerl"
+                ? "border-amber-400/50 text-amber-200 bg-amber-400/10"
+                : "border-slate-700 text-slate-300 hover:border-amber-400/40 hover:text-amber-200"
+            }`}
+          >
+            🟨 Zwutschgerln
+          </button>
+          <button
+            onClick={onMeute}
+            title="Meute (KI-Council) öffnen"
+            className={`px-3 py-1.5 rounded-lg border transition whitespace-nowrap ${
+              meuteOpen
+                ? "border-cyan-400/60 text-cyan-200 bg-cyan-400/15"
+                : "border-cyan-400/30 text-cyan-300 hover:bg-cyan-400/10"
+            }`}
+          >
+            🐺 Meute
+          </button>
           <button className="w-8 h-8 rounded-lg bg-slate-800/60 text-slate-400 hover:text-cyan-300 transition" title="Aktualisieren">↻</button>
           <span className="px-2 py-1 rounded bg-slate-800/60 text-slate-300 text-xs font-semibold">DE</span>
           <span className="text-[10px] text-slate-600 font-mono hidden lg:inline">v1.0.452</span>
@@ -78,6 +115,7 @@ function Banner({ ws, setWs }: { ws: WS; setWs: (w: WS) => void }) {
           <button
             key={t.key}
             onClick={() => setWs(t.key)}
+            title={t.title}
             className={`px-5 py-1.5 rounded-lg text-sm transition ${
               ws === t.key
                 ? "bg-cyan-400/15 text-cyan-300 border border-cyan-400/40 font-semibold"
@@ -551,6 +589,348 @@ function TermineView() {
         </div>
       </main>
       <RightPanel />
+    </div>
+  );
+}
+
+/* ── Shared shell hero ──────────────────────────────────────────────────── */
+function ShellHero({ kicker, title, sub, badge }: { kicker: string; title: string; sub: string; badge?: string }) {
+  return (
+    <div className="flex items-start gap-3 mb-6">
+      <div>
+        <div className="text-[11px] uppercase tracking-widest text-cyan-400/80 font-semibold mb-1">{kicker}</div>
+        <h1 className="text-3xl font-bold" style={{ color: "#5bc8ea" }}>{title}</h1>
+        <p className="text-sm text-slate-400 mt-1 max-w-2xl">{sub}</p>
+      </div>
+      {badge && <span className="ml-auto shrink-0 text-[10px] px-2 py-0.5 rounded bg-cyan-400/15 text-cyan-300 font-semibold border border-cyan-400/20 mt-1">{badge}</span>}
+    </div>
+  );
+}
+
+/* ── Blitz Fips (Field Interactive Project Space) ───────────────────────── */
+const FIPS_ROOMS = ["P26-014 Montage", "P26-009 Konstruktion", "P26-009 Fertigung", "P25-103 Prüfung"];
+const FIPS_SUBTABS = ["Kanban", "Termine", "Mails", "Files", "Chat"];
+
+function FipsView() {
+  const [room, setRoom] = useState(FIPS_ROOMS[0]);
+  const [sub, setSub] = useState("Kanban");
+  return (
+    <div className="h-full overflow-y-auto p-6">
+      <ShellHero
+        kicker="Field Interactive Project Space"
+        title="Blitz Fips"
+        sub="Interne Sicht auf einen Room (= Arbeitspaket): Kanban, Termine, Mails, Files und Chat an einem Ort — die Meute ist im Chat zuschaltbar."
+        badge="ROOM"
+      />
+      <div className="flex flex-wrap gap-2 mb-4">
+        {FIPS_ROOMS.map((r) => (
+          <button
+            key={r}
+            onClick={() => setRoom(r)}
+            className={`px-3 py-1.5 rounded-lg text-xs border transition ${
+              room === r ? "border-purple-400/60 text-purple-200 bg-purple-400/10" : "border-slate-700 text-slate-400 hover:text-slate-200"
+            }`}
+          >
+            📦 {r}
+          </button>
+        ))}
+      </div>
+      <div className="flex items-center gap-5 border-b border-cyan-400/10 pb-2 mb-4 text-sm">
+        {FIPS_SUBTABS.map((s) => (
+          <button
+            key={s}
+            onClick={() => setSub(s)}
+            className={`pb-1 border-b-2 transition ${sub === s ? "border-cyan-400 text-cyan-300 font-semibold" : "border-transparent text-slate-400 hover:text-slate-200"}`}
+          >
+            {s}{s === "Chat" && " 🐺"}
+          </button>
+        ))}
+      </div>
+      {sub === "Kanban" && (
+        <div className="grid md:grid-cols-3 gap-3 max-w-5xl">
+          <FipsLane title="NEW" color="#3b82f6">
+            <BrettCard><div className="text-sm text-slate-100">Prüfprotokoll erstellen</div><div className="flex gap-1 mt-1.5"><Badge c="blue">NEW</Badge><Badge c="cyan">NORMAL</Badge></div></BrettCard>
+          </FipsLane>
+          <FipsLane title="IN_PROGRESS" color="#f59e0b">
+            <BrettCard><div className="text-sm text-slate-100">Gehäuse entgraten</div><div className="flex gap-1 mt-1.5"><Badge c="amber">IN_PROGRESS</Badge><Badge c="amber">▲ HIGH</Badge></div><div className="text-[11px] text-slate-400 mt-1">👤 Marek Kovács</div></BrettCard>
+            <BrettCard><div className="text-sm text-slate-100">Bohrbild anpassen, H7</div><div className="flex gap-1 mt-1.5"><Badge c="amber">IN_PROGRESS</Badge></div></BrettCard>
+          </FipsLane>
+          <FipsLane title="DONE" color="#10b981">
+            <BrettCard><div className="text-sm text-slate-100">Material kommissioniert</div><div className="flex gap-1 mt-1.5"><Badge c="emerald">DONE</Badge></div></BrettCard>
+          </FipsLane>
+        </div>
+      )}
+      {sub === "Termine" && (
+        <div className="max-w-2xl space-y-2">
+          <FipsRow icon="📅" main="Werkstatt-Meeting — Montagefreigabe" meta="Mi 17.06. · 09:00 · Halle 2" />
+          <FipsRow icon="📅" main="QS-Termin Halteblech" meta="Do 18.06. · 14:00" />
+          <div className="text-[11px] text-slate-500 px-1">Room-Termine im Kaliber-Look · Igor kann Slots vorschlagen.</div>
+        </div>
+      )}
+      {sub === "Mails" && (
+        <div className="max-w-2xl space-y-2">
+          <FipsRow icon="✉" main="Rückfrage Toleranz Position 4" meta="Tobias Reiner · 08:03" />
+          <FipsRow icon="✉" main="Lieferavis Nordmetall — KW 25" meta="Sofia Brandt · 07:52" />
+          <div className="text-[11px] text-slate-500 px-1">Nur dem Room zugeordnete Mails — öffnen das volle EmailDetail.</div>
+        </div>
+      )}
+      {sub === "Files" && (
+        <div className="max-w-2xl space-y-2">
+          <FipsRow icon="📄" main="Montagezeichnung_P26-014_RevB.pdf" meta="1,8 MB · 10.06.2026" />
+          <FipsRow icon="📄" main="Prüfplan_Halteblech.xlsx" meta="44 KB · 09.06.2026" />
+          <FipsRow icon="📄" main="Foto_Entgratung.jpg" meta="2,3 MB · 11.06.2026" />
+        </div>
+      )}
+      {sub === "Chat" && (
+        <div className="max-w-2xl">
+          <div className="rounded-xl border border-cyan-400/10 bg-slate-900/40 p-4 space-y-3">
+            <ChatBubble who="Alex Berger" me text="Steht die Montage von P26-014 für KW 25?" />
+            <ChatBubble who="Marek Kovács" text="Bohrbild ist angepasst, Gehäuse entgraten läuft. KW 25 hält." />
+            <ChatBubble who="🐺 Meute · Igor" ai text="Offen ist nur das Prüfprotokoll (NEW). Slot Do 18.06. 14:00 würde passen — soll ich den Termin anlegen?" />
+          </div>
+          <div className="flex items-center gap-2 mt-3">
+            <input disabled placeholder="Nachricht an den Room…" className="flex-1 px-3 py-2 rounded-lg bg-slate-800/60 border border-slate-700 text-sm text-slate-300 placeholder:text-slate-600" />
+            <span className="px-3 py-2 rounded-lg bg-cyan-400/15 text-cyan-300 text-xs font-semibold border border-cyan-400/30">🐺 Meute an</span>
+          </div>
+        </div>
+      )}
+    </div>
+  );
+}
+
+function FipsLane({ title, color, children }: { title: string; color: string; children: React.ReactNode }) {
+  return (
+    <div className="flex flex-col">
+      <div className="rounded-t-xl px-3 py-2 flex items-center gap-2 border-t-2" style={{ borderColor: color, background: "rgba(15,30,50,0.6)" }}>
+        <span className="text-sm font-semibold text-slate-100">{title}</span>
+      </div>
+      <div className="flex-1 space-y-2 p-2 rounded-b-xl bg-slate-900/30 min-h-[120px]">{children}</div>
+    </div>
+  );
+}
+
+function FipsRow({ icon, main, meta }: { icon: string; main: string; meta: string }) {
+  return (
+    <div className="flex items-center gap-3 rounded-lg border border-cyan-400/10 bg-slate-900/40 px-3 py-2.5 hover:border-cyan-400/25 transition">
+      <span className="text-slate-400">{icon}</span>
+      <div className="min-w-0">
+        <div className="text-sm text-slate-100 truncate">{main}</div>
+        <div className="text-[11px] text-slate-500">{meta}</div>
+      </div>
+    </div>
+  );
+}
+
+function ChatBubble({ who, text, me, ai }: { who: string; text: string; me?: boolean; ai?: boolean }) {
+  return (
+    <div className={`max-w-[85%] ${me ? "ml-auto" : ""}`}>
+      <div className={`text-[10px] mb-0.5 ${ai ? "text-cyan-300" : "text-slate-500"} ${me ? "text-right" : ""}`}>{who}</div>
+      <div className={`rounded-xl px-3 py-2 text-sm ${me ? "bg-cyan-400/15 text-cyan-50 border border-cyan-400/25" : ai ? "bg-slate-800/80 text-slate-200 border border-cyan-400/20" : "bg-slate-800/60 text-slate-200"}`}>{text}</div>
+    </div>
+  );
+}
+
+/* ── Paul (Project Approval & Lifecycle Management) ─────────────────────── */
+const PAUL_STAGES = [
+  { k: "COTS", l: "Zukauf", c: "#64748b" },
+  { k: "DOV", l: "Design-Vorgabe", c: "#3b82f6" },
+  { k: "NPD", l: "Entwicklung", c: "#8b5cf6" },
+  { k: "NPI", l: "Industrialisierung", c: "#5bc8ea" },
+  { k: "Ramp-Up", l: "Serienanlauf", c: "#10b981" },
+];
+const PAUL_APPROVALS = [
+  { obj: "H-7206-14021-90 Halteblech links", from: "DOV", to: "NPD", who: "Lena Hofer", state: "WARTET" },
+  { obj: "P26-014 Förderband V2", from: "NPD", to: "NPI", who: "Alex Berger", state: "WARTET" },
+  { obj: "H-7206-14088-92 Seitenteil", from: "NPI", to: "Ramp-Up", who: "Marek Kovács", state: "FREIGEGEBEN" },
+];
+
+function PaulView() {
+  return (
+    <div className="h-full overflow-y-auto p-6">
+      <ShellHero
+        kicker="Project Approval & Lifecycle Management"
+        title="Paul"
+        sub="Projekt-Freigaben & Lifecycle. Jedes Objekt durchläuft denselben Reifegrad-Pfad — Paul steuert die Übergänge und sammelt die nötigen Freigaben."
+        badge="LIFECYCLE"
+      />
+      <div className="rounded-2xl border border-cyan-400/10 bg-slate-900/40 p-5 mb-6 max-w-5xl">
+        <div className="text-xs text-slate-500 mb-4 tracking-wide font-semibold">COME TO LIFE · PRODUKT-LIFECYCLE</div>
+        <div className="flex items-center gap-1 overflow-x-auto pb-1">
+          {PAUL_STAGES.map((s, i) => (
+            <div key={s.k} className="flex items-center gap-1 shrink-0">
+              <div className="rounded-xl px-4 py-3 text-center border" style={{ borderColor: `${s.c}66`, background: `${s.c}1a` }}>
+                <div className="text-sm font-bold" style={{ color: s.c }}>{s.k}</div>
+                <div className="text-[11px] text-slate-400 mt-0.5">{s.l}</div>
+              </div>
+              {i < PAUL_STAGES.length - 1 && <span className="text-slate-600">→</span>}
+            </div>
+          ))}
+        </div>
+      </div>
+      <div className="max-w-5xl">
+        <div className="text-sm font-semibold text-slate-200 mb-3">Offene Freigaben</div>
+        <div className="space-y-2">
+          {PAUL_APPROVALS.map((a) => (
+            <div key={a.obj} className="flex items-center gap-3 rounded-xl border border-cyan-400/10 bg-slate-900/40 px-4 py-3">
+              <div className="flex-1 min-w-0">
+                <div className="text-sm text-slate-100 truncate">{a.obj}</div>
+                <div className="text-[11px] text-slate-500 mt-0.5">👤 {a.who}</div>
+              </div>
+              <div className="flex items-center gap-1.5 text-[11px] text-slate-400 shrink-0">
+                <span className="px-1.5 py-0.5 rounded bg-slate-700/50">{a.from}</span>
+                <span>→</span>
+                <span className="px-1.5 py-0.5 rounded bg-slate-700/50">{a.to}</span>
+              </div>
+              <span className={`text-[10px] px-2 py-0.5 rounded font-semibold shrink-0 ${a.state === "FREIGEGEBEN" ? "bg-emerald-500/20 text-emerald-300" : "bg-amber-500/20 text-amber-300"}`}>{a.state}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+/* ── Klaus (Buchhaltung) ────────────────────────────────────────────────── */
+const KLAUS_KPIS = [
+  { v: "5.120,00 €", l: "Offen", c: "text-amber-300" },
+  { v: "1.240,00 €", l: "Fällig", c: "text-rose-400" },
+  { v: "14.380,00 €", l: "Bezahlt (Monat)", c: "text-emerald-300" },
+];
+const KLAUS_INVOICES = [
+  { id: "R-2026-0188", party: "Nordmetall GmbH", amount: "3.880,00 €", due: "20.06.2026", state: "OFFEN" },
+  { id: "R-2026-0184", party: "Präzitec Kft.", amount: "1.240,00 €", due: "14.06.2026", state: "FÄLLIG" },
+  { id: "R-2026-0177", party: "FeinTech Kft.", amount: "12.500,00 €", due: "02.06.2026", state: "BEZAHLT" },
+];
+
+function KlausView() {
+  return (
+    <div className="h-full overflow-y-auto p-6">
+      <ShellHero
+        kicker="Buchhaltung"
+        title="Klaus"
+        sub="Rechnungen, Fälligkeiten und Zahlungsstatus — direkt aus Bestellungen und Belegen des PDM gespeist."
+        badge="BETA"
+      />
+      <div className="flex flex-wrap gap-2.5 mb-6 max-w-3xl">
+        {KLAUS_KPIS.map((k) => (
+          <div key={k.l} className="rounded-xl border border-cyan-400/10 bg-slate-900/40 px-4 py-3 min-w-[140px]">
+            <div className={`text-xl font-bold ${k.c}`}>{k.v}</div>
+            <div className="text-[11px] text-slate-400 mt-0.5">{k.l}</div>
+          </div>
+        ))}
+      </div>
+      <div className="max-w-4xl rounded-2xl border border-cyan-400/10 bg-slate-900/40 overflow-hidden">
+        <div className="grid grid-cols-[1.2fr_1.6fr_1fr_1fr_0.8fr] gap-2 px-4 py-2.5 text-[11px] text-slate-500 font-semibold border-b border-cyan-400/10 bg-slate-800/30">
+          <span>Rechnung</span><span>Geschäftspartner</span><span>Betrag</span><span>Fällig</span><span>Status</span>
+        </div>
+        {KLAUS_INVOICES.map((r) => (
+          <div key={r.id} className="grid grid-cols-[1.2fr_1.6fr_1fr_1fr_0.8fr] gap-2 px-4 py-3 text-sm border-b border-cyan-400/5 hover:bg-slate-800/30 transition">
+            <span className="text-slate-100 font-medium">{r.id}</span>
+            <span className="text-slate-300 truncate">{r.party}</span>
+            <span className="text-slate-200">{r.amount}</span>
+            <span className="text-slate-400">{r.due}</span>
+            <span><span className={`text-[10px] px-2 py-0.5 rounded font-semibold ${r.state === "BEZAHLT" ? "bg-emerald-500/20 text-emerald-300" : r.state === "FÄLLIG" ? "bg-rose-500/20 text-rose-300" : "bg-amber-500/20 text-amber-300"}`}>{r.state}</span></span>
+          </div>
+        ))}
+      </div>
+      <p className="text-[11px] text-slate-500 mt-4 max-w-2xl">Klaus ist im Aufbau — weitere Funktionen (Mahnwesen, DATEV-Export, Kostenstellen) folgen.</p>
+    </div>
+  );
+}
+
+/* ── Zwutschgerln (sticky notes) ────────────────────────────────────────── */
+const ZW = {
+  free: [
+    { t: "Igor wegen RFQ #34 anstupsen", c: "#fde68a" },
+    { t: "Toleranz H7 final klären", c: "#bbf7d0" },
+  ],
+  mails: [{ t: "Rückruf Tobias Reiner heute", c: "#fecaca", ref: "Rückfrage Toleranz Position 4" }],
+  tasks: [{ t: "vor Freigabe Prüfplan checken", c: "#bfdbfe", ref: "Prüfplan freigeben PR-2026-0042" }],
+  brett: [{ t: "Foto Entgratung anhängen", c: "#e9d5ff", ref: "Gehäuse entgraten" }],
+};
+
+function ZwutschgerlnView() {
+  return (
+    <div className="h-full overflow-y-auto p-6">
+      <ShellHero
+        kicker="Private Notizen & Mini-Tasks"
+        title="🟨 Zwutschgerln"
+        sub="Kleine Klebezettel — frei oder an eine Mail, einen Task oder eine Brett-Karte geheftet. Nur für dich, geräteübergreifend synchron."
+      />
+      <div className="space-y-6 max-w-5xl">
+        <ZwSection title="Frei" notes={ZW.free} />
+        <ZwSection title="✉️ An Mails" notes={ZW.mails} />
+        <ZwSection title="📋 An Tasks" notes={ZW.tasks} />
+        <ZwSection title="🗂️ An Brett-Karten" notes={ZW.brett} />
+      </div>
+    </div>
+  );
+}
+
+function ZwSection({ title, notes }: { title: string; notes: { t: string; c: string; ref?: string }[] }) {
+  return (
+    <div>
+      <h3 className="text-sm font-semibold text-slate-300 mb-2">{title} <span className="text-slate-500">{notes.length}</span></h3>
+      <div className="flex flex-wrap gap-3">
+        {notes.map((n, i) => (
+          <div key={i} className="w-48 rounded-lg p-3 shadow-md rotate-[-1deg]" style={{ background: n.c, color: "#1e293b" }}>
+            {n.ref && <div className="text-[10px] font-semibold opacity-70 mb-1 truncate">↳ {n.ref}</div>}
+            <div className="text-sm font-medium leading-snug">{n.t}</div>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+/* ── Meute (KI-Council) overlay ─────────────────────────────────────────── */
+const MEUTE_MEMBERS = [
+  { label: "Igor", mode: "Chef", c: "cyan" },
+  { label: "BrainB", mode: "sichtbar", c: "emerald" },
+  { label: "BrainC", mode: "sichtbar", c: "emerald" },
+  { label: "BrainG", mode: "sichtbar", c: "emerald" },
+  { label: "Gregor", mode: "aus", c: "slate" },
+];
+const MEUTE_QUICK = ["📋 Lagebild", "⚠️ Risiken", "➡️ Nächste Schritte"];
+
+function MeuteOverlay({ onClose }: { onClose: () => void }) {
+  return (
+    <div className="fixed inset-0 z-50 flex justify-end">
+      <div className="absolute inset-0 bg-black/40" onClick={onClose} />
+      <div className="relative w-full max-w-md h-full flex flex-col border-l border-cyan-400/20 shadow-2xl" style={{ background: "#0a1726" }}>
+        <div className="flex items-center gap-2 px-4 py-3 border-b border-cyan-400/10">
+          <span className="text-lg">🐺</span>
+          <span className="font-bold text-slate-100">Meute</span>
+          <span className="text-xs text-slate-500">KI-Council</span>
+          <button onClick={onClose} className="ml-auto w-8 h-8 rounded-lg text-slate-400 hover:text-cyan-300 hover:bg-slate-800/60 transition">✕</button>
+        </div>
+        <div className="flex flex-wrap gap-1.5 px-4 py-3 border-b border-cyan-400/10">
+          {MEUTE_MEMBERS.map((m) => (
+            <span key={m.label} className="flex items-center gap-1 text-[11px] px-2 py-1 rounded-full bg-slate-800/60 border border-slate-700">
+              <span className={`w-1.5 h-1.5 rounded-full ${m.c === "cyan" ? "bg-cyan-400" : m.c === "emerald" ? "bg-emerald-400" : "bg-slate-500"}`} />
+              <span className="text-slate-200">{m.label}</span>
+              <span className="text-slate-500">· {m.mode}</span>
+            </span>
+          ))}
+        </div>
+        <div className="flex-1 overflow-y-auto px-4 py-4 space-y-3">
+          <ChatBubble who="Ich" me text="📋 Lagebild zum aktuellen Stand?" />
+          <ChatBubble who="Igor" ai text="3 Aufträge aktiv, einer (PR-2026-0042) wartet auf zwei Freigaben. Bestellung PO-2026-0021 ist angekommen, PO-2026-0018 noch offen. 68 Artikel ohne Bestellung — das ist der größte Hebel." />
+          <ChatBubble who="BrainC" ai text="RFQ #34 (Nordmetall) ist beantwortet, Position 3 mit kürzerer Lieferzeit. Lohnt sich, vor dem Toleranz-Klärungspunkt zu entscheiden." />
+          <ChatBubble who="BrainG" ai text="Risiko: Toleranz H7 an Position 4 blockiert die Fertigung. Empfehlung: zuerst Tobias Reiner antworten." />
+        </div>
+        <div className="px-4 py-3 border-t border-cyan-400/10">
+          <div className="flex flex-wrap gap-1.5 mb-2">
+            {MEUTE_QUICK.map((q) => (
+              <span key={q} className="text-[11px] px-2 py-1 rounded-lg bg-slate-800/60 border border-slate-700 text-slate-300">{q}</span>
+            ))}
+          </div>
+          <div className="flex items-center gap-2">
+            <input disabled placeholder="Frag die Meute…" className="flex-1 px-3 py-2 rounded-lg bg-slate-800/60 border border-slate-700 text-sm text-slate-300 placeholder:text-slate-600" />
+            <span className="px-3 py-2 rounded-lg bg-cyan-400/15 text-cyan-300 text-sm font-semibold border border-cyan-400/30">➤</span>
+          </div>
+        </div>
+      </div>
     </div>
   );
 }
