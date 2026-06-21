@@ -61,6 +61,19 @@ let webpackConfig = {
 };
 
 webpackConfig.devServer = (devServerConfig) => {
+  // Strip legacy webpack-dev-server v4 options that don't exist in v5
+  delete devServerConfig.onBeforeSetupMiddleware;
+  delete devServerConfig.onAfterSetupMiddleware;
+  // 'https' became 'server' in webpack-dev-server v5
+  if (devServerConfig.https !== undefined) {
+    if (devServerConfig.https && typeof devServerConfig.https === 'object') {
+      devServerConfig.server = { type: 'https', options: devServerConfig.https };
+    } else if (devServerConfig.https === true) {
+      devServerConfig.server = 'https';
+    }
+    delete devServerConfig.https;
+  }
+
   // Add health check endpoints if enabled
   if (config.enableHealthCheck && setupHealthEndpoints && healthPluginInstance) {
     const originalSetupMiddlewares = devServerConfig.setupMiddlewares;
