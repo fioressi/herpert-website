@@ -7,6 +7,7 @@ import {
   Square, CheckSquare, Star, Trash2, Reply, Filter, ArrowRight,
   Sparkles, Boxes, Terminal, ScanLine, BookOpen, Menu, X
 } from "lucide-react";
+import AppShowcase from "@/components/AppShowcase";
 
 const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
 const API = `${BACKEND_URL}/api`;
@@ -1260,7 +1261,7 @@ const Landing = () => {
       <Hero />
       <SuiteBento />
       <ProcessPipeline />
-      <InteractiveDemo />
+      <AppShowcase />
       <Modules />
       <PartIdSection />
       <Translation />
