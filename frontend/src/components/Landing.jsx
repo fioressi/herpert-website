@@ -5,7 +5,7 @@ import {
   Package, GitBranch, ShoppingCart, Factory, Users, Languages,
   Wrench, Database, Send, Search, Plus, Settings, ChevronRight,
   Square, CheckSquare, Star, Trash2, Reply, Filter, ArrowRight,
-  Sparkles, Boxes, Terminal, ScanLine, BookOpen
+  Sparkles, Boxes, Terminal, ScanLine, BookOpen, Menu, X
 } from "lucide-react";
 
 const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
@@ -30,6 +30,7 @@ const Overline = ({ children, className = "", color = "muted" }) => (
 /* ───────────────── NAV ────────────────────────────────────────── */
 
 const Nav = () => {
+  const [open, setOpen] = useState(false);
   const items = [
     { label: "Suite", href: "#suite" },
     { label: "Module", href: "#module" },
@@ -43,13 +44,13 @@ const Nav = () => {
       data-testid="site-nav"
       className="sticky top-0 z-50 border-b border-zinc-200 bg-white/90 backdrop-blur supports-[backdrop-filter]:bg-white/70"
     >
-      <div className="mx-auto flex max-w-[1400px] items-center justify-between px-6 py-4 md:px-12">
+      <div className="mx-auto flex max-w-[1400px] items-center justify-between px-4 py-4 sm:px-6 md:px-12">
         <a href="#top" data-testid="logo-link" className="flex items-center gap-2">
           <span className="inline-flex h-7 w-7 items-center justify-center bg-brand text-white">
             <Zap size={16} strokeWidth={2.5} />
           </span>
           <span className="font-mono text-sm font-semibold tracking-[0.18em]">HERPERT</span>
-          <span className="hidden font-mono text-[10px] uppercase tracking-[0.18em] text-zinc-400 md:inline">
+          <span className="hidden font-mono text-[10px] uppercase tracking-[0.18em] text-zinc-400 lg:inline">
             · ERP · PDM · PLANUNG
           </span>
         </a>
@@ -65,14 +66,48 @@ const Nav = () => {
             </a>
           ))}
         </nav>
-        <a
-          href="#kontakt"
-          data-testid="nav-cta-demo"
-          className="border border-ink bg-ink px-4 py-2 font-mono text-[12px] uppercase tracking-[0.14em] text-white hover:bg-brand hover:border-brand transition-colors"
-        >
-          Demo anfragen →
-        </a>
+        <div className="flex items-center gap-2">
+          <a
+            href="#kontakt"
+            data-testid="nav-cta-demo"
+            className="hidden sm:inline-flex border border-ink bg-ink px-4 py-2 font-mono text-[12px] uppercase tracking-[0.14em] text-white hover:bg-brand hover:border-brand transition-colors"
+          >
+            Demo anfragen →
+          </a>
+          <button
+            data-testid="mobile-nav-toggle"
+            aria-label="Menu"
+            className="md:hidden flex h-9 w-9 items-center justify-center border border-zinc-300"
+            onClick={() => setOpen((v) => !v)}
+          >
+            {open ? <X size={18} /> : <Menu size={18} />}
+          </button>
+        </div>
       </div>
+      {/* mobile sheet */}
+      {open && (
+        <div className="border-t border-zinc-200 bg-white md:hidden" data-testid="mobile-nav-sheet">
+          <div className="px-4 py-3">
+            {items.map((it) => (
+              <a
+                key={it.label}
+                href={it.href}
+                onClick={() => setOpen(false)}
+                className="block border-b border-zinc-100 py-3 font-mono text-[13px] uppercase tracking-[0.14em] text-zinc-700 last:border-b-0"
+              >
+                {it.label}
+              </a>
+            ))}
+            <a
+              href="#kontakt"
+              onClick={() => setOpen(false)}
+              className="mt-3 inline-flex w-full items-center justify-center border border-ink bg-ink px-4 py-3 font-mono text-[12px] uppercase tracking-[0.14em] text-white"
+            >
+              Demo anfragen →
+            </a>
+          </div>
+        </div>
+      )}
     </header>
   );
 };
@@ -84,7 +119,7 @@ const Hero = () => {
     <section id="top" className="relative overflow-hidden bg-blueprint text-white">
       <div className="absolute inset-0 blueprint-bg opacity-100" />
       <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-blueprint" />
-      <div className="relative mx-auto max-w-[1400px] px-6 pt-24 pb-32 md:px-12 md:pt-32 md:pb-44">
+      <div className="relative mx-auto max-w-[1400px] px-4 pt-16 pb-24 sm:px-6 sm:pt-24 sm:pb-32 md:px-12 md:pt-32 md:pb-44">
         {/* status bar */}
         <div className="mb-12 flex flex-wrap items-center gap-x-6 gap-y-2 border-y border-white/10 py-3">
           <Overline className="text-cyan-accent">● SYS / ONLINE</Overline>
@@ -98,11 +133,11 @@ const Hero = () => {
 
         <div className="grid grid-cols-1 gap-12 md:grid-cols-12">
           <div className="md:col-span-8">
-            <h1 className="font-sans text-5xl font-semibold leading-[0.95] tracking-tight md:text-7xl lg:text-[88px]">
+            <h1 className="font-sans text-[42px] sm:text-5xl font-semibold leading-[0.95] tracking-tight md:text-7xl lg:text-[88px]">
               Von der <span className="text-brand">Konstruktion</span><br />
               bis zur <span className="border-b-4 border-brand">Fertigung</span>.
             </h1>
-            <p className="mt-8 max-w-2xl font-sans text-lg leading-relaxed text-zinc-300">
+            <p className="mt-6 max-w-2xl font-sans text-base sm:text-lg leading-relaxed text-zinc-300 md:mt-8">
               HERPERT ist das ERP-System für konstruktionsnahe Fertigung.
               Produktdaten, Stücklisten, Beschaffung und Produktion in einem
               System — direkt verbunden mit <span className="font-medium text-white">SolidWorks</span> und{" "}
@@ -222,7 +257,7 @@ const SuiteBento = () => {
   ];
   return (
     <section id="suite" className="bg-white">
-      <div className="mx-auto max-w-[1400px] px-6 py-24 md:px-12 md:py-32">
+      <div className="mx-auto max-w-[1400px] px-4 py-16 sm:px-6 sm:py-24 md:px-12 md:py-32">
         <div className="mb-12 grid grid-cols-1 items-end gap-6 md:grid-cols-12">
           <div className="md:col-span-8">
             <Overline>// DIE BLITZ-SUITE</Overline>
@@ -284,7 +319,7 @@ const ProcessPipeline = () => {
   ];
   return (
     <section id="prozess" className="border-y border-zinc-200 bg-zinc-50">
-      <div className="mx-auto max-w-[1400px] px-6 py-24 md:px-12 md:py-32">
+      <div className="mx-auto max-w-[1400px] px-4 py-16 sm:px-6 sm:py-24 md:px-12 md:py-32">
         <Overline>// LIFECYCLE</Overline>
         <h2 className="mt-3 max-w-3xl font-sans text-4xl font-semibold tracking-tight md:text-5xl">
           Ein durchgängiger Prozess — kein Medienbruch.
@@ -702,7 +737,7 @@ const InteractiveDemo = () => {
   const [tab, setTab] = useState("post");
   return (
     <section id="demo" className="bg-white">
-      <div className="mx-auto max-w-[1400px] px-6 py-24 md:px-12 md:py-32">
+      <div className="mx-auto max-w-[1400px] px-4 py-16 sm:px-6 sm:py-24 md:px-12 md:py-32">
         <div className="grid grid-cols-1 items-end gap-6 md:grid-cols-12">
           <div className="md:col-span-8">
             <Overline>// INTERAKTIVE DEMO</Overline>
@@ -717,14 +752,14 @@ const InteractiveDemo = () => {
         </div>
 
         <div className="mt-12 border border-zinc-200">
-          {/* tab bar */}
-          <div className="flex flex-wrap items-stretch border-b border-zinc-200 bg-zinc-50">
+          {/* tabs container - scrollable on mobile */}
+          <div className="flex items-stretch overflow-x-auto border-b border-zinc-200 bg-zinc-50 scrollbar-thin">
             {TABS.map((t) => (
               <button
                 key={t.id}
                 data-testid={`demo-tab-${t.id}`}
                 onClick={() => setTab(t.id)}
-                className={`group inline-flex items-center gap-2 border-r border-zinc-200 px-5 py-3 font-mono text-[11px] uppercase tracking-[0.14em] last:border-r-0 ${
+                className={`group inline-flex shrink-0 items-center gap-2 whitespace-nowrap border-r border-zinc-200 px-4 py-3 font-mono text-[11px] uppercase tracking-[0.14em] last:border-r-0 sm:px-5 ${
                   tab === t.id ? "bg-white text-ink border-b-2 border-b-brand -mb-px" : "text-zinc-600 hover:bg-white"
                 }`}
               >
@@ -736,14 +771,16 @@ const InteractiveDemo = () => {
             </div>
           </div>
 
-          {/* content */}
-          <div className="bg-white" data-testid={`demo-content-${tab}`}>
-            {tab === "post" && <EmailMock />}
-            {tab === "brett" && <BrettMock />}
-            {tab === "bom" && <BomMock />}
-            {tab === "po" && <POMock />}
-            {tab === "dashboard" && <DashboardMock />}
-            {tab === "meute" && <MeuteMock />}
+          {/* content - horizontal scroll on tight viewports */}
+          <div className="overflow-x-auto bg-white" data-testid={`demo-content-${tab}`}>
+            <div className="min-w-[680px]">
+              {tab === "post" && <EmailMock />}
+              {tab === "brett" && <BrettMock />}
+              {tab === "bom" && <BomMock />}
+              {tab === "po" && <POMock />}
+              {tab === "dashboard" && <DashboardMock />}
+              {tab === "meute" && <MeuteMock />}
+            </div>
           </div>
         </div>
       </div>
@@ -770,7 +807,7 @@ const Modules = () => {
   ];
   return (
     <section id="module" className="border-t border-zinc-200 bg-white">
-      <div className="mx-auto max-w-[1400px] px-6 py-24 md:px-12 md:py-32">
+      <div className="mx-auto max-w-[1400px] px-4 py-16 sm:px-6 sm:py-24 md:px-12 md:py-32">
         <div className="grid grid-cols-1 items-end gap-6 md:grid-cols-12">
           <div className="md:col-span-8">
             <Overline>// MODULE</Overline>
@@ -784,14 +821,14 @@ const Modules = () => {
           </p>
         </div>
 
-        <div className="mt-12 grid grid-cols-1 gap-px border border-zinc-200 bg-zinc-200 md:grid-cols-3 lg:grid-cols-4">
+        <div className="mt-12 grid grid-cols-2 gap-px border border-zinc-200 bg-zinc-200 md:grid-cols-3 lg:grid-cols-4">
           {items.map((it) => (
-            <div key={it.title} data-testid={`module-${it.title.toLowerCase().replace(/[^a-z0-9]+/g, "-")}`} className="group flex flex-col bg-white p-6 hover:bg-zinc-50">
+            <div key={it.title} data-testid={`module-${it.title.toLowerCase().replace(/[^a-z0-9]+/g, "-")}`} className="group flex flex-col bg-white p-5 sm:p-6 hover:bg-zinc-50">
               <div className="flex h-10 w-10 items-center justify-center border border-zinc-200 text-ink group-hover:bg-ink group-hover:text-white transition-colors">
                 {it.i}
               </div>
-              <h3 className="mt-5 font-sans text-lg font-medium tracking-tight">{it.title}</h3>
-              <p className="mt-2 text-sm leading-relaxed text-zinc-600">{it.desc}</p>
+              <h3 className="mt-4 font-sans text-base font-medium tracking-tight sm:mt-5 sm:text-lg">{it.title}</h3>
+              <p className="mt-2 text-[13px] leading-relaxed text-zinc-600 sm:text-sm">{it.desc}</p>
             </div>
           ))}
         </div>
@@ -823,7 +860,7 @@ const PartIdSection = () => {
   return (
     <section id="partid" className="bg-blueprint text-white">
       <div className="absolute inset-x-0 blueprint-bg" style={{ height: "100%" }} />
-      <div className="relative mx-auto max-w-[1400px] px-6 py-24 md:px-12 md:py-32">
+      <div className="relative mx-auto max-w-[1400px] px-4 py-16 sm:px-6 sm:py-24 md:px-12 md:py-32">
         <div className="grid grid-cols-1 items-end gap-6 md:grid-cols-12">
           <div className="md:col-span-8">
             <Overline className="text-cyan-accent">// GROUP PDM · DATENMODELL</Overline>
@@ -840,9 +877,9 @@ const PartIdSection = () => {
 
         <div className="mt-14 grid grid-cols-1 gap-px border border-white/10 bg-white/10 md:grid-cols-12">
           {/* big PartId */}
-          <div className="bg-blueprint p-8 md:col-span-7">
+          <div className="bg-blueprint p-6 sm:p-8 md:col-span-7">
             <Overline className="text-cyan-accent">// AUFBAU DER PARTID</Overline>
-            <div className="mt-6 grid grid-cols-7 gap-2">
+            <div className="mt-6 grid grid-cols-2 gap-2 sm:grid-cols-7">
               {[
                 { l: "H", k: "CompanyCode", h: "1 Buchstabe · besitzende Firma" },
                 { l: "-", k: "", h: "" },
@@ -852,13 +889,13 @@ const PartIdSection = () => {
                 { l: "-", k: "", h: "" },
                 { l: "90", k: "StatusCode", h: "Reifegrad · Lifecycle" },
               ].map((seg, i) => (
-                <div key={i} className={`text-center ${seg.k === "" ? "col-span-0 hidden md:block" : "col-span-2"} ${seg.k === "" ? "" : ""}`}>
+                <div key={i} className={`text-center ${seg.k === "" ? "hidden sm:block sm:col-span-1" : "col-span-1 sm:col-span-2"}`}>
                   {seg.k === "" ? (
                     <div className="flex h-16 items-center justify-center font-mono text-3xl text-zinc-500">{seg.l}</div>
                   ) : (
                     <div className="border border-white/15 p-3">
                       <Mono className="text-[10px] uppercase tracking-widest text-zinc-400">{seg.k}</Mono>
-                      <div className="mt-1 font-mono text-3xl text-white">{seg.l}</div>
+                      <div className="mt-1 font-mono text-2xl text-white sm:text-3xl">{seg.l}</div>
                       <div className="mt-1 text-[11px] leading-snug text-zinc-500">{seg.h}</div>
                     </div>
                   )}
@@ -887,7 +924,7 @@ const PartIdSection = () => {
           {/* families */}
           <div className="bg-blueprint p-8 md:col-span-12">
             <Overline className="text-cyan-accent">// KLASSEN-FAMILIEN · 125 KLASSEN IN 15 FAMILIEN</Overline>
-            <div className="mt-6 grid grid-cols-1 gap-px bg-white/10 md:grid-cols-4">
+            <div className="mt-6 grid grid-cols-2 gap-px bg-white/10 md:grid-cols-4">
               {families.map((f) => (
                 <div key={f.range} className="bg-blueprint p-4">
                   <Mono className="text-[11px] text-cyan-accent">{f.range}</Mono>
@@ -919,7 +956,7 @@ const Translation = () => {
   const s = samples[idx];
   return (
     <section className="border-y border-zinc-200 bg-white">
-      <div className="mx-auto max-w-[1400px] px-6 py-24 md:px-12 md:py-32">
+      <div className="mx-auto max-w-[1400px] px-4 py-16 sm:px-6 sm:py-24 md:px-12 md:py-32">
         <div className="grid grid-cols-1 items-end gap-6 md:grid-cols-12">
           <div className="md:col-span-8">
             <Overline>// AUTOMATISCHE ÜBERSETZUNG</Overline>
@@ -963,7 +1000,7 @@ const Translation = () => {
 const SolidWorks = () => {
   return (
     <section className="bg-zinc-50">
-      <div className="mx-auto max-w-[1400px] px-6 py-24 md:px-12 md:py-32">
+      <div className="mx-auto max-w-[1400px] px-4 py-16 sm:px-6 sm:py-24 md:px-12 md:py-32">
         <div className="grid grid-cols-1 items-center gap-10 md:grid-cols-12">
           <div className="md:col-span-7">
             <Overline>// NATIVE INTEGRATION</Overline>
@@ -1045,7 +1082,7 @@ const Pricing = () => {
   ];
   return (
     <section id="preis" className="border-t border-zinc-200 bg-white">
-      <div className="mx-auto max-w-[1400px] px-6 py-24 md:px-12 md:py-32">
+      <div className="mx-auto max-w-[1400px] px-4 py-16 sm:px-6 sm:py-24 md:px-12 md:py-32">
         <Overline>// PREIS</Overline>
         <h2 className="mt-3 font-sans text-4xl font-semibold tracking-tight md:text-5xl">
           Ein Preis, alles inklusive.
@@ -1111,7 +1148,7 @@ const Contact = () => {
 
   return (
     <section id="kontakt" className="bg-ink text-white">
-      <div className="mx-auto max-w-[1400px] px-6 py-24 md:px-12 md:py-32">
+      <div className="mx-auto max-w-[1400px] px-4 py-16 sm:px-6 sm:py-24 md:px-12 md:py-32">
         <div className="grid grid-cols-1 gap-12 md:grid-cols-12">
           <div className="md:col-span-5">
             <Overline color="brand">// KONTAKT</Overline>
